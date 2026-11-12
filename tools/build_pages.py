@@ -8,7 +8,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent / "site"
 ORIGIN = "https://transformationstudio.site"
-FONT = "ttf"  # extension and format of the two font files
+FONT = "woff2"  # extension and format of the two font files
 UPDATED = "12 November 2026"
 
 LOGO = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 50 50">'
