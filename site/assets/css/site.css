@@ -473,7 +473,7 @@ details p{color:var(--muted);margin:10px 0 0}
 .close .btn{background:var(--bg);color:#fff}
 footer{border-top:1px solid #24382F;padding:28px 0;color:var(--faint);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
-footer a{color:#C9DACF;text-decoration:none;margin-left:18px}
+footer a{color:#C9DACF;text-decoration:none;margin-left:18px;display:inline-block;padding:12px 0;margin-top:-12px;margin-bottom:-12px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 /* Text pages: privacy, terms, support, 404 */
 .doc .wrap{max-width:820px}
