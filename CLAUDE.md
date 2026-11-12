@@ -17,5 +17,6 @@ Marketing site for the Transformation Studios app. Everything that is published 
 - `site/index.html` the home page; `site/privacy/`, `site/terms/`, `site/support/`, `site/404.html`
 - `site/assets/css/site.css`, `site/assets/js/site.js`, `site/assets/img/`, `site/assets/fonts/`
 - Site-wide settings (App Store links, story video, support email) are the `SITE` object at the top of `site/assets/js/site.js`.
-- `netlify.toml` holds the publish folder, headers and redirects.
+- `netlify.toml` holds the publish folder, headers and redirects. Images and fonts are cached for a year, so a replaced image needs a new file name. When the story video link is set, allow its player in `frame-src` there.
+- `tools/build_pages.py` writes privacy, terms, support and 404; edit the text there and run it, don't edit those HTML files by hand.
 - Asset paths are root-absolute (`/assets/...`), so preview with a local server from `site/`, not by opening the file.
