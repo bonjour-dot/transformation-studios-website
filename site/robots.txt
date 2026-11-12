@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://transformationstudio.site/sitemap.xml
