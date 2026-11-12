@@ -406,6 +406,13 @@ svg.f{fill:currentColor;stroke:none}
 /* STORY extras */
 .video{margin:36px auto 0;max-width:900px;aspect-ratio:16/9;border-radius:24px;background:linear-gradient(#2FA37A,#FF7A4D);display:flex;align-items:center;justify-content:center;position:relative}
 .video .play{width:84px;height:84px;border-radius:50%;background:#FBF3E7;display:flex;align-items:center;justify-content:center}
+.video.ready{cursor:pointer}
+.video.playing{background:#000;overflow:hidden}
+.video iframe{width:100%;height:100%;border:0;border-radius:inherit}
+/* Apple's official badges: never recoloured or stretched; 40px tall with clear space of a quarter of the height */
+.badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.badge:not([hidden]){display:inline-flex;margin:16px 10px 0}
+.badge img{display:block;height:40px;width:auto}
 .video small{position:absolute;left:16px;bottom:14px;background:rgba(20,30,25,.78);color:#FBF3E7;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700}
 .s-lead{max-width:640px;margin:16px auto 0;color:#4A5852;font-size:18px}
 .who{display:grid;gap:24px;margin-top:56px;background:#fff;border-radius:28px;padding:26px;box-shadow:0 20px 50px rgba(30,43,37,.08);text-align:left}
