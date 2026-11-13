@@ -47,7 +47,7 @@ const SITE = {
     var dots=document.querySelector('.dots[data-for="'+r.id+'"]'),hold=0,vis=false,n=cards(r).length;
     if(dots){for(var i=0;i<n;i++){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Show item "+(i+1));(function(k){b.onclick=function(){hold=Date.now()+8000;go(r,k)}})(i);dots.appendChild(b)}}
     function sync(){var c=curIdx(r);if(dots){dots.classList.toggle("hide",r.scrollWidth<=r.clientWidth+4);[].forEach.call(dots.children,function(d,i){d.classList.toggle("on",i===c)})}
-      if(r===mac)tabs.forEach(function(t,i){t.setAttribute("aria-selected",i===c?"true":"false");if(i===c&&t.parentNode.scrollWidth>t.parentNode.clientWidth)t.parentNode.scrollTo({left:t.offsetLeft-t.parentNode.clientWidth/2+t.offsetWidth/2,behavior:"smooth"})})}
+    }
     var st;r.addEventListener("scroll",function(){clearTimeout(st);st=setTimeout(sync,80)},{passive:true});
     ["pointerdown","touchstart","touchmove","wheel","focusin"].forEach(function(e){r.addEventListener(e,function(){hold=Date.now()+5000},{passive:true})});
     r.addEventListener("mouseenter",function(){hold=Date.now()+5000});r.addEventListener("mouseleave",function(){hold=Math.min(hold,Date.now()+1200)});
@@ -57,7 +57,37 @@ const SITE = {
       // at the end, go back to the start; otherwise go to the next card that actually moves the row (the last cards can't be centred on wide screens)
       if(r.scrollLeft>=max-4){go(r,0);return}
       var cs=cards(r),i=curIdx(r)+1;while(i<cs.length&&Math.min(max,cs[i].offsetLeft-r.offsetLeft-(r.clientWidth-cs[i].offsetWidth)/2)<=r.scrollLeft+4)i++;
-      go(r,i>=cs.length?0:i)},r===mac?4000:3200);
+      go(r,i>=cs.length?0:i)},3200);
   });
-  tabs.forEach(function(t,i){t.addEventListener("click",function(){go(mac,i);mac.dispatchEvent(new Event("pointerdown"))})});
+  // Mac carousel: the screens sit on a ring that keeps turning the same way. Tabs, dots, arrow keys, a swipe or a click on a side screen turn it; it pauses briefly while touched or hovered.
+  if(mac){(function(){
+    var sl=[].slice.call(mac.children),n=sl.length,turn=0,hold=0,vis=false,step=360/n,dots=document.querySelector('.dots[data-for="mactrack"]'),view=mac.parentNode;
+    function cur(){return((turn%n)+n)%n}
+    function size(){var w=sl[0].offsetWidth;if(w)mac.style.setProperty("--r",Math.round(w/2/Math.tan(Math.PI/n))+"px")}
+    function draw(){var c=cur();sl.forEach(function(s,i){var d=((i-c)%n+n)%n;if(d>n/2)d-=n;
+        s.style.transform="translateZ(calc(var(--r) * -1)) rotateY("+((i-turn)*step)+"deg) translateZ(var(--r))";
+        s.classList.toggle("cur",d===0);s.classList.toggle("near",d===1||d===-1);s.setAttribute("aria-hidden",d===0?"false":"true")});
+      if(dots)[].forEach.call(dots.children,function(b,i){b.classList.toggle("on",i===c)});
+      tabs.forEach(function(t,i){t.setAttribute("aria-selected",i===c?"true":"false");var p=t.parentNode;if(i===c&&p.scrollWidth>p.clientWidth)p.scrollTo({left:t.offsetLeft-p.clientWidth/2+t.offsetWidth/2,behavior:rm?"auto":"smooth"})})}
+    function by(d){turn+=d;draw()}
+    function to(i){var d=((i-cur())%n+n)%n;if(d>n/2)d-=n;by(d)}
+    // once the carousel is on screen, load every screen so none turns up empty
+    function eager(){if(eager.done)return;eager.done=true;mac.querySelectorAll("img").forEach(function(m){m.loading="eager"})}
+    function wait(ms){hold=Math.max(hold,Date.now()+ms)}
+    if(dots)sl.forEach(function(s,i){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Show screen "+(i+1));b.onclick=function(){wait(8000);to(i)};dots.appendChild(b)});
+    tabs.forEach(function(t,i){t.addEventListener("click",function(){wait(8000);to(i)})});
+    // swipe or drag sideways to turn; a click on a side screen brings it to the front
+    var x0=null,y0=0,moved=false;
+    mac.addEventListener("pointerdown",function(e){x0=e.clientX;y0=e.clientY;moved=false;wait(5000)});
+    mac.addEventListener("pointermove",function(e){if(x0===null)return;var dx=e.clientX-x0;if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(e.clientY-y0)){moved=true;x0=null;wait(5000);by(dx<0?1:-1)}});
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev){mac.addEventListener(ev,function(){x0=null})});
+    sl.forEach(function(s,i){s.addEventListener("click",function(){if(!moved&&s.classList.contains("near")){wait(5000);to(i)}})});
+    mac.addEventListener("dragstart",function(e){e.preventDefault()});
+    mac.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();wait(8000);by(e.key==="ArrowRight"?1:-1)}});
+    view.addEventListener("mouseenter",function(){wait(5000)});view.addEventListener("mouseleave",function(){hold=Math.min(hold,Date.now()+1200)});
+    mac.addEventListener("focusin",function(){wait(5000)});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)eager()},{threshold:.3}).observe(mac);else{vis=true;eager()}
+    window.addEventListener("resize",size);window.addEventListener("load",size);size();draw();
+    if(!rm)setInterval(function(){if(vis&&!document.hidden&&Date.now()>=hold)by(1)},3200);
+  })()}
 })();

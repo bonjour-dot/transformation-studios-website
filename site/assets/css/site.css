@@ -68,8 +68,15 @@ svg.f{fill:currentColor;stroke:none}
 @media(min-width:760px){.chip{font-size:14px;padding:7px 13px}.c1{left:5%;top:9%}.c2{right:2%;top:4%}.c3{left:30%;bottom:8%}.c4{left:50%;right:auto;bottom:4%}}
 
 /* Device frames */
-.phone{background:#050B08;border:2px solid #34524A;border-radius:12cqw;padding:2.2%;box-shadow:0 30px 80px rgba(0,0,0,.6);container-type:inline-size}
-.phone>img,.phone>picture>img{border-radius:9cqw;width:100%}
+/* iPhone: corners are a share of the phone's own width (the two values keep them round on a tall shape), with side buttons and a screen that fills the frame */
+.phone{position:relative;background:#050B08;border:2px solid #34524A;border-radius:15.6%/7.4%;padding:2.6%;box-shadow:0 30px 80px rgba(0,0,0,.6);container-type:inline-size}
+.phone::before,.phone::after{content:"";position:absolute;width:3px;background:#34524A;pointer-events:none}
+.phone::before{left:-5px;top:17%;height:19%;border-radius:2px 0 0 2px;background:linear-gradient(#34524A 0 18%,transparent 18% 32%,#34524A 32% 62%,transparent 62% 70%,#34524A 70%)}
+.phone::after{right:-5px;top:27%;height:11%;border-radius:0 2px 2px 0}
+.phone>img,.phone>picture>img{border-radius:13cqw;width:100%}
+/* screenshots that carry their own bezel: trim it off and let the screen fill the frame */
+.phone>picture>img.bz{-webkit-clip-path:inset(1.7% 1.6% round 12.4%/5.7%);clip-path:inset(1.7% 1.6% round 12.4%/5.7%);transform:scale(1.034)}
+.phone>.isl{position:absolute;left:50%;top:6cqw;transform:translateX(-50%);width:27cqw;height:7.6cqw;border-radius:99px;background:#000}
 .mac .lid{background:#050B08;border:2px solid var(--border);border-bottom:0;border-radius:14px 14px 0 0;padding:1.1% 1.1% 0}
 .mac .lid img{border-radius:6px 6px 0 0;width:100%}
 .mac .base{height:12px;margin:0 -5%;border-radius:0 0 14px 14px;background:linear-gradient(#3B5A4F,#1A2A24)}
@@ -77,7 +84,7 @@ svg.f{fill:currentColor;stroke:none}
 
 /* ---------- App screen replicas (sized in cqw so they scale) ---------- */
 .scr{container-type:inline-size;position:relative;overflow:hidden;aspect-ratio:9/19.5;border-radius:9.6cqw;background:#0E1513;color:#FFF4E6;font-family:'DM Sans',system-ui,sans-serif;text-align:left;line-height:1.25}
-.phone .scr{border-radius:10cqw}
+.phone .scr{border-radius:13cqw}
 .sb{display:flex;justify-content:space-between;align-items:center;padding:4.6cqw 7cqw 0;font-weight:700;font-size:4.2cqw;position:relative;z-index:3}
 .sb .isl{position:absolute;left:50%;top:3.2cqw;transform:translateX(-50%);width:27cqw;height:7.6cqw;border-radius:99px;background:#000}
 .sb .ic{font-size:3.2cqw;letter-spacing:.3cqw}
@@ -354,11 +361,16 @@ svg.f{fill:currentColor;stroke:none}
 .mac-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0 22px}
 .mac-tabs button{font:inherit;font-size:14px;font-weight:700;color:#C9DACF;background:var(--panel);border:1px solid var(--border);border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer}
 .mac-tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.mac-view{max-width:1040px;margin:0 auto}
-.mac-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-.mac-track::-webkit-scrollbar{display:none}
-.mslide{flex:0 0 100%;margin:0;scroll-snap-align:center;padding:0 2px}
-.mac-solo{display:flex;justify-content:center}.mac-solo .shot-card{max-width:100%}.mac-solo img{max-height:min(62vh,560px);width:auto}
+/* Mac carousel: the screens sit on a ring that turns. site.js sets --r (the ring's radius) and each slide's angle. */
+.mac-view{overflow:hidden;padding:6px 0 4px}
+.mac-track{display:grid;width:min(84vw,900px);margin:0 auto;--r:1000px;perspective:calc(var(--r)*2.2);perspective-origin:50% 38%;touch-action:pan-y;outline-offset:6px;-webkit-user-select:none;user-select:none}
+.mslide{grid-area:1/1;align-self:start;min-width:0;margin:0;padding:0 2px;opacity:0;z-index:1;pointer-events:none;-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:transform;transition:transform .9s cubic-bezier(.22,.8,.2,1),opacity .6s,z-index .9s}
+.mslide.near{opacity:.42;z-index:2;pointer-events:auto;cursor:pointer}
+.mslide.cur{opacity:1;z-index:3;pointer-events:auto}
+.mslide img{-webkit-user-drag:none}
+.mslide figcaption{transition:opacity .4s}.mslide:not(.cur) figcaption{opacity:0}
+@media (prefers-reduced-motion:reduce){.mslide{transition:none}}
+.mac-solo{display:flex;justify-content:center}.mac-solo .shot-card{max-width:100%}.mac-solo img{max-height:min(62vh,560px,max(52vw,300px));width:auto}
 .mac-tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;padding:2px 20px;margin-left:-20px;margin-right:-20px}
 .mac-tabs::-webkit-scrollbar{display:none}
 .mac-tabs button{flex:none}
@@ -367,7 +379,7 @@ svg.f{fill:currentColor;stroke:none}
 .dots button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:#2F4A40;cursor:pointer;transition:all .3s}
 .dots button.on{width:26px;background:#FF7A4D}
 .dots.hide{display:none}
-.mac-view figcaption{text-align:center;color:var(--muted);font-size:15px;margin:18px auto 0;max-width:720px}.mac-view figcaption b{color:var(--text)}
+.mac-view figcaption{text-align:center;color:var(--muted);font-size:15px;margin:18px auto 0;max-width:720px;min-height:3em}.mac-view figcaption b{color:var(--text)}
 .mac-duo{display:grid;gap:16px;align-items:start}
 @media(min-width:760px){.mac-duo{grid-template-columns:1.6fr 1fr}}
 .shot-card{border-radius:18px;overflow:hidden;border:1px solid var(--border);background:#050B08;padding:6px}
