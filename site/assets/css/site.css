@@ -47,6 +47,7 @@ svg.f{fill:currentColor;stroke:none}
 .kinds{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .kinds span{display:inline-flex;align-items:center;gap:7px;padding:7px 14px 7px 8px;border-radius:999px;font-size:13px;font-weight:700;background:var(--panel);border:1px solid var(--border);color:var(--text)}.kinds i{width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center}.kinds svg{width:13px;height:13px}
 .hero h1{font-size:clamp(40px,9vw,88px);line-height:1.02;margin-top:22px}
+.hero h1 .nw{white-space:nowrap}
 .hero h1 em{font-style:italic;font-weight:600;background:linear-gradient(90deg,#2FA37A,#FF7A4D);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .lead{max-width:680px;margin:18px auto 0;font-size:clamp(17px,2.2vw,21px)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}

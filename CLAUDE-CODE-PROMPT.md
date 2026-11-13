@@ -73,9 +73,9 @@ Update the footer links (Support, Privacy, Terms) to these pages.
 
 ## Phase 5: SEO and sharing
 
-1. `<title>`: `Transformation Studios — One video. One post. Reaching many at a time.`
+1. `<title>`: `Transformation Studios — One video. One post. Reaching many.`
 2. Keep the current meta description, then add a canonical URL, Open Graph and Twitter card tags.
-3. Make a 1200×630 share image from the hero (the three-device collage on the dark background, with the logo and "Many creator apps. One studio.").
+3. Make a 1200×630 share image from the hero (the three-device collage on the dark background, with the logo and "One video. One post. Reaching many.").
 4. Favicon set and `apple-touch-icon` from the logo tile (cream tile, orange bars #E8572A, green play #1F8A63).
 5. `robots.txt`, `sitemap.xml`, and JSON-LD `SoftwareApplication` (iOS and macOS, price 9.99 USD per month, free trial).
 

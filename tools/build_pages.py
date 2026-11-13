@@ -52,7 +52,7 @@ def page(path, title, desc, body, robots=None):
 <meta property="og:title" content="{title} — Transformation Studios">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{ORIGIN}/assets/img/share.jpg">
+<meta property="og:image" content="{ORIGIN}/assets/img/share-reaching-many.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F1A16">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
