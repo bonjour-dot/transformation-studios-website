@@ -555,3 +555,39 @@ picture{display:contents}
 .tp .gear sup,.cam .gear sup{background:#2EE67A;color:#04210F}
 .lvl.on{border-color:#2EE67A!important;background:rgba(46,230,122,.12)}.lvl.on .ck{background:#2EE67A;color:#04210F}
 .sheet .tt{font-family:'Fraunces',serif;font-weight:700}
+/* Edit section, current app screens */
+.prev.short{height:50cqw}
+.lanes{margin:3cqw 4.5cqw 0;display:grid;gap:1.6cqw}
+.lanes>div{position:relative;height:7.6cqw;border-radius:2cqw;background:rgba(255,255,255,.05);overflow:hidden}
+.lanes em{position:absolute;left:2cqw;top:50%;transform:translateY(-50%);font-style:normal;font-size:2.6cqw;font-weight:800;z-index:2;text-shadow:0 0 1cqw #0F1A16,0 0 1cqw #0F1A16}
+.lanes u{position:absolute;top:1cqw;bottom:1cqw;border-radius:1.4cqw;opacity:.95}
+.lanes .ph3{position:absolute;top:0;bottom:-30cqw;width:.7cqw;background:#fff;left:38%;z-index:3;animation:ph3 6s linear infinite}
+@keyframes ph3{from{left:6%}to{left:94%}}
+@media(prefers-reduced-motion:reduce){.lanes .ph3{animation:none}}
+.dock{margin:4cqw 4.5cqw 0;display:flex;gap:1.4cqw;padding:2.4cqw 1.6cqw;border-radius:5cqw;background:#1A2A24;border:1px solid #2F4A40}
+.dock>span{flex:1;display:flex;flex-direction:column;align-items:center;gap:1cqw;font-size:2.4cqw;font-weight:600;color:#C9DACF}
+.dock i{width:11cqw;height:11cqw;border-radius:3.4cqw;display:flex;align-items:center;justify-content:center;color:#fff}
+.dock svg{width:5.4cqw;height:5.4cqw}
+.nextc,.cta-in{font-weight:800}
+.nextc{margin:3cqw 4.5cqw 0;padding:3.4cqw 0;border-radius:3.4cqw;background:#FF7A4D;color:#2A0F05;text-align:center;font-size:4cqw}
+.cta-in.blue{background:#3B7DD8;color:#fff}.cta-in.green{background:#2EE67A;color:#04210F}
+.selr{display:flex;justify-content:space-between;margin:3cqw 4.5cqw 0;font-size:3cqw;color:#A9C2B5}.selr b{color:#fff;font-variant-numeric:tabular-nums}
+.cutg{display:grid;grid-template-columns:1fr 1fr;gap:2cqw;margin:3cqw 4.5cqw 0}
+.cutg span{padding:3cqw 0;border-radius:3cqw;background:#1A2A24;border:1px solid #2F4A40;text-align:center;font-weight:700;font-size:3.5cqw}
+.cutg .r{background:#B8392B;border-color:#B8392B}
+.seg.lv2 .on{background:#2EE67A;color:#04210F}.seg.lv2{margin:0 4.5cqw}
+.capon{display:flex;align-items:center;gap:3cqw;margin:3cqw 4.5cqw 0;padding:3cqw;border-radius:4cqw;background:#1A2A24}
+.capon i{width:10cqw;height:10cqw;border-radius:3cqw;background:#5B4BC4;display:flex;align-items:center;justify-content:center;color:#fff}.capon svg{width:5cqw;height:5cqw}
+.capon b,.chk b{display:block;font-size:3.6cqw}.capon small,.chk small{font-size:2.8cqw;color:#A9C2B5}.capon>div{flex:1}
+.tgl2{width:11cqw;height:6.4cqw;border-radius:99px;background:#2EE67A;position:relative}.tgl2::after{content:"";position:absolute;right:.8cqw;top:.8cqw;width:4.8cqw;height:4.8cqw;border-radius:50%;background:#fff}
+.stl{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin:3cqw 4.5cqw 0}
+.stl span{padding:3cqw 0;border-radius:3.4cqw;background:#1A2A24;border:1px solid #2F4A40;text-align:center;font-weight:700;font-size:3.4cqw}
+.stl .on{background:#2B2260;border-color:#B49CFF}
+.chk{display:flex;align-items:center;gap:3cqw;margin:3cqw 4.5cqw 0;padding:3cqw;border-radius:4cqw;background:#1A2A24;font-size:4cqw;color:#A9C2B5}.chk>div{flex:1;color:#fff}
+.rtg{display:flex;gap:3cqw;margin:4cqw 4.5cqw 0}
+.rv{flex:none;width:30cqw;height:42cqw;border-radius:3cqw;background:linear-gradient(170deg,#FF5E8A,#FF9B4D 40%,#2EE67A 80%)}
+.rtg h6{margin:0;font-family:'Fraunces',serif;font-size:6cqw;font-weight:700}.rtg small{display:block;font-size:2.8cqw;color:#A9C2B5;margin:1cqw 0}.rtg em{font-style:normal;font-size:2.8cqw;color:#2EE67A;font-weight:700}
+.shp4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw}
+.shp4 span{padding:2cqw 0;border-radius:2.6cqw;background:#111815;border:1px solid #2F4A40;text-align:center;font-size:2.4cqw;color:#A9C2B5}.shp4 b{display:block;color:#fff;font-size:3.2cqw}
+.shp4 .on{border-color:#FF7A4D;background:#3A1F15}
+.blk.q{display:flex;justify-content:space-between;align-items:center}.blk.q h5{margin:0}
