@@ -18,13 +18,13 @@ LOGO = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true">
 
 NAV = '''<header class="nav">
   <div class="wrap">
-    <a class="logo" href="/" aria-label="Transformation Studios home"><svg><use href="#logo"/></svg><span class="wordmark"><b>Transformation</b><i>STUDIOS</i></span></a>
+    <a class="logo" href="/" aria-label="Transformation Studio home"><svg><use href="#logo"/></svg><span class="wordmark"><b>Transformation</b><i>STUDIO</i></span></a>
     <nav class="nav-links" aria-label="Main"><a href="/#all">All in one</a><a href="/#edit">Editing</a><a href="/#prompter">Teleprompter</a><a href="/#voice">Transcripts</a><a href="/#mac">Mac</a><a href="/#pricing">Pricing</a><a href="/#story">Our story</a></nav>
     <a class="btn btn-primary" href="/#pricing" data-store="ios">Try it free</a>
   </div>
 </header>'''
 
-FOOTER = ('<footer><div class="wrap"><span>Made in Toulouse, France · Transformation Studios</span>'
+FOOTER = ('<footer><div class="wrap"><span>Made in Toulouse, France · Transformation Studio</span>'
           '<span><a href="/#story">Our story</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span></div></footer>')
 
 DRAFT = '<p class="draft" role="note"><b>DRAFT: Ryan to review.</b> This page is not final. Anything marked <mark>[TO CONFIRM]</mark> still needs checking before launch.</p>'
@@ -40,7 +40,7 @@ def page(path, title, desc, body, robots=None):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} — Transformation Studios</title>
+<title>{title} — Transformation Studio</title>
 <meta name="description" content="{desc}">
 '''
     if robots:
@@ -48,8 +48,8 @@ def page(path, title, desc, body, robots=None):
     else:
         head += f'<link rel="canonical" href="{url}">\n'
     head += f'''<meta property="og:type" content="website">
-<meta property="og:site_name" content="Transformation Studios">
-<meta property="og:title" content="{title} — Transformation Studios">
+<meta property="og:site_name" content="Transformation Studio">
+<meta property="og:title" content="{title} — Transformation Studio">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{ORIGIN}/assets/img/share-reaching-many.jpg">
@@ -106,7 +106,7 @@ privacy = doc("Privacy", "Privacy policy", f"Last updated {UPDATED}.", f'''
     <p>Your videos, photos, recordings, presentations and transcripts are made and kept on your own devices, and in the folder you choose, such as iCloud or Google Drive. We never receive them. We only keep what is needed for your account and your subscription.</p>
 
     <h2>Who we are</h2>
-    <p>Transformation Studios is published by Ryan Caley, Toulouse, France {TC} <span class="tc-note">(legal name or company, and postal address)</span>. For anything about your data, write to {MAIL}.</p>
+    <p>Transformation Studio is published by Ryan Caley, Toulouse, France {TC} <span class="tc-note">(legal name or company, and postal address)</span>. For anything about your data, write to {MAIL}.</p>
 
     <h2>What runs on your device only</h2>
     <p>Speech-to-text and captions run on your device. Editing and exporting also happen on your device. {TC} <span class="tc-note">(that translation and voice clean-up also run on the device, on iPhone and iPad as well as Mac)</span></p>
@@ -150,7 +150,7 @@ privacy = doc("Privacy", "Privacy policy", f"Last updated {UPDATED}.", f'''
     <p>You can access, correct, export or delete your data, object to processing, and complain to the CNIL (<a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>). You can ask for your account to be deleted from inside the app {TC} <span class="tc-note">(where the Delete My Account option is on iPhone and iPad; on Mac it is Help › Delete My Account…)</span> or by writing to {MAIL}. We do it within 30 days.</p>
 
     <h2>Children</h2>
-    <p>Transformation Studios is not intended for children under 15 without a parent's consent.</p>
+    <p>Transformation Studio is not intended for children under 15 without a parent's consent.</p>
 
     <h2>Changes</h2>
     <p>We will tell you in the app or by email before any important change.</p>
@@ -169,7 +169,7 @@ terms = doc("Terms", "Terms of use", f"Last updated {UPDATED}.", f'''
     </ul>
 
     <h2>Not a donation</h2>
-    <p>Transformation Studios is an app subscription sold by Ryan Caley, not a donation, and it isn't tax-deductible. The income helps support Ryan and Marita's missionary work in France, but you are buying software, and you receive no tax receipt.</p>
+    <p>Transformation Studio is an app subscription sold by Ryan Caley, not a donation, and it isn't tax-deductible. The income helps support Ryan and Marita's missionary work in France, but you are buying software, and you receive no tax receipt.</p>
 
     <h2>Licence</h2>
     <p>Your use of the app is covered by Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener">Licensed Application End User License Agreement (EULA)</a>, together with the points on this page. {TC} <span class="tc-note">(that the App Store listing uses Apple's standard EULA rather than a custom one)</span></p>
@@ -203,8 +203,8 @@ support = doc("Support", "How can we help?", "Write to us and a real person will
     <h2 id="cancel">Cancel your subscription</h2>
     <p>Your subscription is managed by Apple, so you cancel it in your Apple ID settings. Deleting the app does not cancel it.</p>
     <ul>
-      <li><b>iPhone or iPad.</b> Open Settings, tap your name, then Subscriptions. Choose Transformation Studios and tap Cancel Subscription.</li>
-      <li><b>Mac.</b> Open the App Store, click your name, then Account Settings. Under Subscriptions click Manage, then Edit next to Transformation Studios and Cancel Subscription.</li>
+      <li><b>iPhone or iPad.</b> Open Settings, tap your name, then Subscriptions. Choose Transformation Studio and tap Cancel Subscription.</li>
+      <li><b>Mac.</b> Open the App Store, click your name, then Account Settings. Under Subscriptions click Manage, then Edit next to Transformation Studio and Cancel Subscription.</li>
       <li><b>Any browser.</b> Go to <a href="https://apps.apple.com/account/subscriptions" rel="noopener">apps.apple.com/account/subscriptions</a>.</li>
     </ul>
     <p>Cancel at least 24 hours before the renewal date. You keep access until the end of the period you paid for.</p>
@@ -227,7 +227,7 @@ notfound = '''<section class="doc nf">
   </div>
 </section>'''
 
-page("/privacy/", "Privacy policy", "How Transformation Studios handles your data. Speech-to-text and captions run on your device.", privacy)
-page("/terms/", "Terms of use", "Subscription terms for Transformation Studios: $9.99 a month or $99.99 a year, 7-day free trial, managed in your Apple ID settings.", terms)
-page("/support/", "Support", "Get help with Transformation Studios, and see how to cancel or restore your subscription.", support)
+page("/privacy/", "Privacy policy", "How Transformation Studio handles your data. Speech-to-text and captions run on your device.", privacy)
+page("/terms/", "Terms of use", "Subscription terms for Transformation Studio: $9.99 a month or $99.99 a year, 7-day free trial, managed in your Apple ID settings.", terms)
+page("/support/", "Support", "Get help with Transformation Studio, and see how to cancel or restore your subscription.", support)
 page("/404.html", "Page not found", "This page could not be found.", notfound, robots="noindex")
