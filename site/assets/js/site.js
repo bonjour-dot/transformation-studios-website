@@ -38,6 +38,11 @@ const SITE = {
     function on(el){ps.forEach(function(x){x.classList.toggle("on",x===el)});box.classList.add("holding");var b=box.getBoundingClientRect(),r=el.getBoundingClientRect(),sc=box.offsetWidth/b.width||1,y=(r.top-b.top)*sc,top=y-pop.offsetHeight-8;if(top<box.offsetHeight*0.1)top=y+r.height*sc+8;pop.style.top=top+"px"}
     ps.forEach(function(el){var tmr;el.addEventListener("click",function(){on(el)});el.addEventListener("pointerdown",function(){tmr=setTimeout(function(){on(el)},350)});["pointerup","pointerleave"].forEach(function(e){el.addEventListener(e,function(){clearTimeout(tmr)})})});
     window.addEventListener("load",function(){on(ps[1])});window.addEventListener("resize",function(){var c=box.querySelector(".para.on");if(c)on(c)})}
+  // share sheet: pick a version, the big button follows; tap it to copy
+  var shw=document.getElementById("shw");
+  if(shw){var chips=shw.querySelectorAll(".shchip"),sb=document.getElementById("shbtn"),st=document.getElementById("shbtn-t"),lab="Copy all",ft;
+    chips.forEach(function(c){c.addEventListener("click",function(){chips.forEach(function(x){x.classList.toggle("on",x===c)});lab=c.getAttribute("data-copy");st.textContent=lab})});
+    sb.addEventListener("click",function(){st.textContent="Copied";clearTimeout(ft);ft=setTimeout(function(){st.textContent=lab},1500)})}
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}
