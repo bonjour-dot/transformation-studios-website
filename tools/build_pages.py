@@ -61,7 +61,7 @@ def page(path, title, desc, body, robots=None):
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/Fraunces.{FONT}" as="font" type="{mime}" crossorigin>
 <link rel="preload" href="/assets/fonts/DMSans.{FONT}" as="font" type="{mime}" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site-b21.css">
 </head>
 <body>
 {LOGO}
