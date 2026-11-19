@@ -128,7 +128,9 @@ svg.f{fill:currentColor;stroke:none}
 .li .ch{width:4.4cqw;height:4.4cqw;stroke-width:3}
 .tabbar{position:absolute;left:4.5cqw;right:4.5cqw;bottom:4cqw;display:flex;gap:2cqw;padding:1.4cqw;border-radius:99px;background:rgba(26,42,36,.92);border:1px solid #2F4A40;font-size:3.1cqw;font-weight:600;color:#C9DACF}
 .tabbar span{flex:1;display:flex;align-items:center;justify-content:center;gap:1.2cqw;padding:2.2cqw 0;border-radius:99px}
-.tabbar .on{background:#FF7A4D;color:#2A0F05}.tabbar svg{width:4cqw;height:4cqw}
+.tabbar .on{color:#FF7A4D}.tabbar svg{width:4cqw;height:4cqw}
+.tabbar .record{flex:0 0 13cqw;height:13cqw;margin:-5cqw auto -2cqw;padding:0;border-radius:50%;background:#FF7A4D;color:#2A0F05}
+.tabbar .record svg{width:6cqw;height:6cqw}
 /* iPad Home (landscape, sidebar like the real app) */
 .ih{aspect-ratio:3/4;border-radius:3cqw;background:#0F1A16;container-type:inline-size;overflow:hidden;position:relative;color:#FFF4E6;font-family:'DM Sans',sans-serif;text-align:left;display:grid;grid-template-columns:30% 1fr;grid-template-rows:auto 1fr}
 .ih-sb{grid-column:1/3;display:flex;justify-content:space-between;padding:1.6cqw 3cqw .4cqw;font-size:2.2cqw;font-weight:600}
