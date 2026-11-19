@@ -46,7 +46,15 @@ const SITE = {
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}
-  function go(r,i){var cs=cards(r);if(!cs.length)return;i=(i+cs.length)%cs.length;var c=cs[i];r.scrollTo({left:c.offsetLeft-r.offsetLeft-(r.clientWidth-c.offsetWidth)/2,behavior:rm?"auto":"smooth"})}
+  // Glide: an eased, frame-by-frame scroll (native smooth scrolling is abrupt and fights scroll-snap). Snap is switched off while it glides.
+  function glide(r,to){to=Math.max(0,Math.min(r.scrollWidth-r.clientWidth,to));if(rm){r.scrollLeft=to;return}
+    var from=r.scrollLeft,d=to-from;if(Math.abs(d)<2)return;var t0=performance.now(),dur=Math.min(1500,Math.max(850,Math.abs(d)*1.1));
+    r._glide=t0;r.style.scrollSnapType="none";r.style.scrollBehavior="auto";
+    function f(now){if(r._glide!==t0)return;var p=Math.min(1,(now-t0)/dur),e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;r.scrollLeft=from+d*e;
+      if(p<1)requestAnimationFrame(f);else{r.style.scrollSnapType="";r.style.scrollBehavior=""}}
+    requestAnimationFrame(f)}
+  function stopGlide(r){if(r._glide){r._glide=0;r.style.scrollSnapType="";r.style.scrollBehavior=""}}
+  function go(r,i){var cs=cards(r);if(!cs.length)return;i=(i+cs.length)%cs.length;var c=cs[i];glide(r,c.offsetLeft-r.offsetLeft-(r.clientWidth-c.offsetWidth)/2)}
   var tabs=document.querySelectorAll(".mac-tabs button"),mac=document.getElementById("mactrack");
   document.querySelectorAll(".auto").forEach(function(r){
     var dots=document.querySelector('.dots[data-for="'+r.id+'"]'),hold=0,vis=false,n=cards(r).length;
@@ -54,7 +62,7 @@ const SITE = {
     function sync(){var c=curIdx(r);if(dots){dots.classList.toggle("hide",r.scrollWidth<=r.clientWidth+4);[].forEach.call(dots.children,function(d,i){d.classList.toggle("on",i===c)})}
     }
     var st;r.addEventListener("scroll",function(){clearTimeout(st);st=setTimeout(sync,80)},{passive:true});
-    ["pointerdown","touchstart","touchmove","wheel","focusin"].forEach(function(e){r.addEventListener(e,function(){hold=Date.now()+5000},{passive:true})});
+    ["pointerdown","touchstart","touchmove","wheel","focusin"].forEach(function(e){r.addEventListener(e,function(){stopGlide(r);hold=Date.now()+5000},{passive:true})});
     r.addEventListener("mouseenter",function(){hold=Date.now()+5000});r.addEventListener("mouseleave",function(){hold=Math.min(hold,Date.now()+1200)});
     new IntersectionObserver(function(es){vis=es[0].isIntersecting},{threshold:.35}).observe(r);
     window.addEventListener("resize",sync);sync();
@@ -62,7 +70,7 @@ const SITE = {
       // at the end, go back to the start; otherwise go to the next card that actually moves the row (the last cards can't be centred on wide screens)
       if(r.scrollLeft>=max-4){go(r,0);return}
       var cs=cards(r),i=curIdx(r)+1;while(i<cs.length&&Math.min(max,cs[i].offsetLeft-r.offsetLeft-(r.clientWidth-cs[i].offsetWidth)/2)<=r.scrollLeft+4)i++;
-      go(r,i>=cs.length?0:i)},3200);
+      go(r,i>=cs.length?0:i)},3600);
   });
   // Mac carousel: the screens sit on a ring that keeps turning the same way. Tabs, dots, arrow keys, a swipe or a click on a side screen turn it; it pauses briefly while touched or hovered.
   if(mac){(function(){
