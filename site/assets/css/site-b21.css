@@ -218,7 +218,7 @@ svg.f{fill:currentColor;stroke:none}
 .sh-two svg{font-size:6cqw}
 .sh-note{font-size:2.8cqw;color:#A9C2B5;margin:2cqw 4.5cqw 0}
 .blk{margin:3cqw 4.5cqw 0;padding:3cqw;border-radius:3.4cqw;background:#1A2A24;border:1px solid #24382F}
-.blk h5{margin:0 0 2.4cqw;font-size:4cqw;display:flex;align-items:center;gap:2cqw}
+.blk .h5{font-weight:700;margin:0 0 2.4cqw;font-size:4cqw;display:flex;align-items:center;gap:2cqw}
 .shapes{display:grid;grid-template-columns:1fr 1fr;gap:2cqw}
 .shapes span{border-radius:2.6cqw;border:1px solid #2F4A40;background:#111815;padding:2.4cqw;display:flex;gap:2cqw;align-items:center;font-size:2.6cqw;color:#A9C2B5;line-height:1.15}
 .shapes b{display:block;color:#fff;font-size:4cqw}
@@ -382,9 +382,12 @@ svg.f{fill:currentColor;stroke:none}
 .mac-tabs::-webkit-scrollbar{display:none}
 .mac-tabs button{flex:none}
 @media(min-width:900px){.mac-tabs{justify-content:center;flex-wrap:wrap}}
-.dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
-.dots button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:#2F4A40;cursor:pointer;transition:all .3s}
-.dots button.on{width:26px;background:#FF7A4D}
+/* Each dot is a 24px tap target; the visible dot is drawn inside it */
+.dots{display:flex;justify-content:center;gap:0;margin-top:8px}
+.dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;position:relative;transition:width .3s}
+.dots button::before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:99px;background:#2F4A40;transition:all .3s}
+.dots button.on{width:42px}
+.dots button.on::before{width:26px;background:#FF7A4D}
 .dots.hide{display:none}
 .mac-view figcaption{text-align:center;color:var(--muted);font-size:15px;margin:18px auto 0;max-width:720px;min-height:3em}.mac-view figcaption b{color:var(--text)}
 .mac-duo{display:grid;gap:16px;align-items:start}
@@ -592,11 +595,11 @@ picture{display:contents}
 .chk{display:flex;align-items:center;gap:3cqw;margin:3cqw 4.5cqw 0;padding:3cqw;border-radius:4cqw;background:#1A2A24;font-size:4cqw;color:#A9C2B5}.chk>div{flex:1;color:#fff}
 .rtg{display:flex;gap:3cqw;margin:4cqw 4.5cqw 0}
 .rv{flex:none;width:30cqw;height:42cqw;border-radius:3cqw;background:linear-gradient(170deg,#FF5E8A,#FF9B4D 40%,#2EE67A 80%)}
-.rtg h6{margin:0;font-family:'Fraunces',serif;font-size:6cqw;font-weight:700}.rtg small{display:block;font-size:2.8cqw;color:#A9C2B5;margin:1cqw 0}.rtg em{font-style:normal;font-size:2.8cqw;color:#2EE67A;font-weight:700}
+.rtg .h6{margin:0;font-family:'Fraunces',serif;font-size:6cqw;font-weight:700}.rtg small{display:block;font-size:2.8cqw;color:#A9C2B5;margin:1cqw 0}.rtg em{font-style:normal;font-size:2.8cqw;color:#2EE67A;font-weight:700}
 .shp4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw}
 .shp4 span{padding:2cqw 0;border-radius:2.6cqw;background:#111815;border:1px solid #2F4A40;text-align:center;font-size:2.4cqw;color:#A9C2B5}.shp4 b{display:block;color:#fff;font-size:3.2cqw}
 .shp4 .on{border-color:#FF7A4D;background:#3A1F15}
-.blk.q{display:flex;justify-content:space-between;align-items:center}.blk.q h5{margin:0}
+.blk.q{display:flex;justify-content:space-between;align-items:center}.blk.q .h5{margin:0}
 
 /* Share sheet (matches the real Share screen for a transcript) */
 .shw .hdr{padding-top:3cqw}

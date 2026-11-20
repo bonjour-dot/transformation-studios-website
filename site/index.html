@@ -100,7 +100,7 @@
     <div class="st-phone"><div class="phone"><div class="scr">
       <div class="sb"><span>9:41</span><i class="isl"></i><span class="ic">▂▄▆ ◠ ▮</span></div>
       <div class="hi"><div><small>TRANSFORMATION STUDIO</small><b>Hi there</b></div><span class="av">TS</span></div><div class="carry"><div class="cr-top"><div class="cr-th"><span class="dur">0:58</span></div><div class="cr-t"><small>CARRY ON · STEP 3 OF 4</small><b>Morning routine</b><em>2 minutes ago</em></div></div><div class="path onc"><span class="d"><i>✓</i>Record</span><span class="d"><i>✓</i>Edit</span><span class="a"><i>3</i>Captions</span><span><i>4</i>Share</span></div><div class="nextb">Next: Captions ›</div></div><div class="rowh"><b>Start something</b></div><div class="tiles"><span style="background:#FF8A5C"><svg><use href="#f-video"/></svg><b>Video</b><small>Record or import</small></span><span style="background:#FFD43B"><svg><use href="#f-doc"/></svg><b>Teleprompter</b><small>Write, then read</small></span><span style="background:#5CC8FF"><svg><use href="#f-photo"/></svg><b>Photo</b><small>Post or collage</small></span><span style="background:#FF7CC4"><svg><use href="#f-mic"/></svg><b>Audio</b><small>3 notes</small></span></div>
-      <div class="tabbar"><span class="on"><svg class="i f"><use href="#f-house"/></svg>Home</span><span class="record" aria-label="Record video"><svg class="i f"><use href="#f-video"/></svg></span><span><svg class="i f"><use href="#f-grid"/></svg>Library</span></div>
+      <div class="tabbar"><span class="on"><svg class="i f"><use href="#f-house"/></svg>Home</span><span class="record" role="img" aria-label="Record video"><svg class="i f"><use href="#f-video"/></svg></span><span><svg class="i f"><use href="#f-grid"/></svg>Library</span></div>
     </div></div></div>
 
     <div class="st-ipad"><div class="ipad"><div class="ih">
@@ -213,12 +213,12 @@
       <div class="sb"><span>9:41</span><i class="isl"></i><span class="ic">▂▄▆ ◠ ▮</span></div>
       <div class="hdr"><span class="bk">‹</span><b>16 Nov 2026</b><span class="bk ghost"></span></div>
       <div class="path"><span class="d"><i>✓</i>Record</span><span class="d"><i>✓</i>Edit</span><span class="d"><i>✓</i>Captions</span><span class="a"><i>4</i>Share</span></div>
-      <div class="rtg"><div class="rv"></div><div><h6>Ready to go</h6><small>Straight from the camera, as it was filmed.</small><em>✓ 2 of 4 steps done</em></div></div>
-      <div class="blk"><h5>Shape</h5>
+      <div class="rtg"><div class="rv"></div><div><div class="h6">Ready to go</div><small>Straight from the camera, as it was filmed.</small><em>✓ 2 of 4 steps done</em></div></div>
+      <div class="blk"><div class="h5">Shape</div>
         <div class="shp4"><span class="on"><b>9:16</b>Reels</span><span><b>16:9</b>YouTube</span><span><b>1:1</b>Square</span><span><b>4:5</b>Feed</span></div></div>
       <div class="sh-two"><span style="background:#4FE0A6;color:#06221A"><svg class="i"><use href="#i-dl"/></svg>Save to Photos</span><span style="background:#FF8A5C;color:#2A0F05"><svg class="i"><use href="#i-share"/></svg>Share</span></div>
       <div class="sh-note">Share opens Instagram, WhatsApp, AirDrop, Messages, Files and more.</div>
-      <div class="blk q"><h5><svg class="i" style="color:#FF8A5C"><use href="#i-sun"/></svg>Quality · 1080p</h5>⌄</div>
+      <div class="blk q"><div class="h5"><svg class="i" style="color:#FF8A5C"><use href="#i-sun"/></svg>Quality · 1080p</div>⌄</div>
     </div></div>
       <span class="num" style="background:#5CC8FF">6</span><h3>Share in the right shape</h3><p>Pick 9:16, 16:9, 1:1 or 4:5, then save to Photos or share straight to your apps.</p></article>
   </div>
@@ -300,7 +300,7 @@
             <button class="para" type="button"><span class="ts"><svg class="i f"><use href="#f-playc"/></svg>[0:06]</span><span class="tx">Here's the thing nobody tells you about posting every day. You don't need more ideas, you need a system. Write it once, film it with the script by the lens, and let the captions do the rest.</span></button>
             <button class="para" type="button"><span class="ts"><svg class="i f"><use href="#f-playc"/></svg>[0:31]</span><span class="tx">Let's get into it.</span></button>
           </div>
-          <div class="pop" id="pop" role="menu" aria-label="Paragraph actions"><div><svg class="i f"><use href="#i-play"/></svg>Play from here</div><div><svg class="i"><use href="#i-pen"/></svg>Fix the words</div><div><svg class="i"><use href="#i-copy"/></svg>Copy</div></div>
+          <div class="pop" id="pop" role="menu" aria-label="Paragraph actions"><div role="menuitem"><svg class="i f"><use href="#i-play"/></svg>Play from here</div><div role="menuitem"><svg class="i"><use href="#i-pen"/></svg>Fix the words</div><div role="menuitem"><svg class="i"><use href="#i-copy"/></svg>Copy</div></div>
         </div></div><span class="cap">Hold a paragraph</span></div>
 
         <div><div class="phone"><div class="scr shw" id="shw">
@@ -308,7 +308,7 @@
           <div class="hdr"><span class="pbtn">Done</span><b>Share</b><span class="pbtn ghost"></span></div>
           <div class="shbody">
             <div class="shlab">What to share</div>
-            <div class="shchips" role="tablist" aria-label="What to share"><button type="button" class="shchip on" data-copy="Copy all">Original</button><button type="button" class="shchip" data-copy="Copy Français">Français</button><button type="button" class="shchip" data-copy="Copy both">Both side by side</button></div>
+            <div class="shchips" role="group" aria-label="What to share"><button type="button" class="shchip on" data-copy="Copy all">Original</button><button type="button" class="shchip" data-copy="Copy Français">Français</button><button type="button" class="shchip" data-copy="Copy both">Both side by side</button></div>
             <div class="shlab">Quick send</div>
             <div class="shsec"><div class="shrow"><span class="shtile"><svg class="i"><use href="#i-msg"/></svg></span><span class="shtx"><b>Send as text</b><small>Messages, WhatsApp, Mail</small></span><svg class="i shch"><use href="#i-chev"/></svg></div><div class="shrow"><span class="shtile"><svg class="i"><use href="#i-copy"/></svg></span><span class="shtx"><b>Copy</b><small>Paste it anywhere</small></span><svg class="i shch"><use href="#i-chev"/></svg></div></div>
             <div class="shlab">Save as a file</div>
