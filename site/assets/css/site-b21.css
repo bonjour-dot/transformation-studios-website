@@ -35,7 +35,8 @@ svg.f{fill:currentColor;stroke:none}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo svg{width:40px;height:40px;flex:none}
 .wordmark{display:flex;flex-direction:column;line-height:1}
-.wordmark b{font-family:'Brush Script MT','Brush Script Std','Yellowtail',cursive;font-weight:400;font-size:28px;color:var(--text)}
+/* The word Transformation as a picture of the Mac app's lettering, so it looks the same on every device */
+.wordmark b{display:block;font-size:28px;width:5.214em;height:1.3em;margin:-.15em;background:url(/assets/img/wordmark.svg) no-repeat center/100% 100%;overflow:hidden;text-indent:-999em;white-space:nowrap}
 .wordmark i{font-style:normal;font-size:9px;font-weight:800;letter-spacing:5px;color:var(--video);margin:-1px 0 0 2px}
 .nav-links{display:none;gap:26px;align-items:center}
 .nav-links a{color:#C9DACF;text-decoration:none;font-size:15px}
