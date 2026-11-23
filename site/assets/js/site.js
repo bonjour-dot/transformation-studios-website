@@ -52,6 +52,50 @@ const SITE = {
   if(vbox&&vsrc){var lab=vbox.querySelector("small");if(lab)lab.textContent="RYAN'S STORY \u00b7 PLAY VIDEO";vbox.classList.add("ready");vbox.setAttribute("role","button");vbox.tabIndex=0;vbox.setAttribute("aria-label","Play Ryan's story");
     var playv=function(){if(vbox.querySelector("iframe"))return;var f=document.createElement("iframe");f.src=vsrc;f.title="Ryan's story";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";vbox.textContent="";vbox.appendChild(f);vbox.classList.add("playing");vbox.removeAttribute("role");vbox.removeAttribute("tabindex")};
     vbox.addEventListener("click",playv);vbox.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();playv()}})}
+  // ---- Phone demos (build 47 look) ----
+  // waveform bars in the Trim demo
+  var w=document.getElementById("wave");
+  if(w){var sd=7,h="";for(var i=0;i<40;i++){sd=(sd*9301+49297)%233280;var v=22+Math.round(sd/233280*70);h+='<i style="height:'+v+'%"></i>'}w.insertAdjacentHTML("afterbegin",h)}
+  // trim and cut digits tick forward, like typing an exact time
+  function fmt(t){var m=Math.floor(t/60),x=t-m*60;return m+":"+(x<10?"0":"")+x.toFixed(1)}
+  var ts=document.getElementById("tr-s"),cur=document.getElementById("ev-cur"),cs=document.getElementById("cut-s"),cc=document.getElementById("cut-cur"),k=0;
+  if(!rm&&(ts||cs))setInterval(function(){k=(k+1)%40;if(ts)ts.textContent=fmt(k*0.3);if(cur){var c=Math.floor(k*5.6);cur.textContent=Math.floor(c/60)+":"+String(c%60).padStart(2,"0")}if(cs)cs.textContent=fmt(k*0.1);if(cc)cc.textContent=fmt(4.2+(k%20)*0.3)},700);
+  // captions light up word by word
+  var cw=document.querySelectorAll("#capw span"),ci=0;
+  if(cw.length){cw[0].classList.add("on");if(!rm)setInterval(function(){cw[ci].classList.remove("on");ci=(ci+1)%cw.length;cw[ci].classList.add("on")},480)}
+  // Smart Cut: the three levels take turns; a tap picks one
+  var lv=document.getElementById("sc-lvl");
+  if(lv){var opts=[].slice.call(lv.children),held=0,cutz=document.querySelectorAll("#sc .cutz"),
+      shapes={"Tight":[[16,11],[44,15],[78,13],[30,6],[62,5]],"Natural":[[18,9],[46,12],[80,10]],"Relaxed":[[46,10],[80,8]]};
+    function pick(o){opts.forEach(function(x){x.classList.toggle("on",x===o)});
+      document.getElementById("sc-p").textContent=o.dataset.p;document.getElementById("sc-s").textContent=o.dataset.s;
+      document.getElementById("sc-after").textContent=o.dataset.l;document.getElementById("sc-len").textContent="0:12 → "+o.dataset.l;
+      document.getElementById("sc-bar").style.width=o.dataset.w+"%";
+      var sh=shapes[o.textContent]||[],box=cutz[0]&&cutz[0].parentNode;if(box){box.innerHTML=sh.map(function(z){return '<span class="cutz" style="left:'+z[0]+'%;width:'+z[1]+'%"></span>'}).join("")}}
+    opts.forEach(function(o){o.style.cursor="pointer";o.addEventListener("click",function(){held=Date.now()+8000;pick(o)})});
+    var si=1;if(!rm)setInterval(function(){if(Date.now()<held)return;si=(si+1)%opts.length;pick(opts[si])},2600)}
+  // teleprompter demo record: the timer and countdown appear
+  var tp=document.getElementById("tp"),rb=document.getElementById("recb"),tm,t=0;
+  function tick(){t++;var r=30-t;document.getElementById("tp-t").textContent="0:"+String(t).padStart(2,"0");document.getElementById("tp-left").textContent="0:"+String(Math.max(r,0)).padStart(2,"0");document.getElementById("tp-prog").style.width=(t/30*100)+"%";if(t>=30)t=0}
+  if(rb)rb.addEventListener("click",function(){if(tp.classList.toggle("recording")){t=0;tick();tm=setInterval(tick,1000)}else clearInterval(tm)});
+  // Level page: tap a level
+  document.querySelectorAll("#lv .b4lv").forEach(function(b,_,all){b.addEventListener("click",function(){[].forEach.call(document.querySelectorAll("#lv .b4lv"),function(x){x.classList.toggle("on",x===b)})})});
+  // voice recording clock
+  var vr=document.getElementById("vrec"),vs=2;
+  if(vr&&!rm)setInterval(function(){vs=(vs+1)%600;vr.textContent=Math.floor(vs/60)+":"+String(vs%60).padStart(2,"0")},1000);
+  // transcript: choose a paragraph to hear it
+  var box=document.getElementById("trx");
+  if(box){var ps=box.querySelectorAll(".para"),bar=document.getElementById("trx-bar"),tt=document.getElementById("trx-t"),pt;
+    function choose(el){ps.forEach(function(x){x.classList.toggle("on",x===el)});box.classList.add("chosen");tt.textContent=el.dataset.t;
+      var parts=el.dataset.t.split(":"),start=(+parts[0])*60+(+parts[1]);bar.style.transition="none";bar.style.width=(start/18*100)+"%";
+      clearTimeout(pt);pt=setTimeout(function(){bar.style.transition="width 3s linear";bar.style.width=Math.min(100,(start+3)/18*100)+"%"},60)}
+    ps.forEach(function(el){el.addEventListener("click",function(){choose(el)})});
+    window.addEventListener("load",function(){choose(ps[1])})}
+  // export: pick a format, the big button follows; tap it
+  var fm=document.getElementById("fmt");
+  if(fm){var fb=fm.querySelectorAll("button"),eb=document.getElementById("shbtn"),et=document.getElementById("shbtn-t"),sel=fb[0],ft;
+    fb.forEach(function(b){b.addEventListener("click",function(){sel=b;fb.forEach(function(x){x.classList.toggle("on",x===b)});et.textContent="Export "+b.dataset.n})});
+    eb.addEventListener("click",function(){et.textContent=sel.dataset.d;clearTimeout(ft);ft=setTimeout(function(){et.textContent="Export "+sel.dataset.n},1500)})}
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}

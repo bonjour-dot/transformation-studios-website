@@ -94,3 +94,16 @@ Searched `iOS/`, `Sources/TSCore`, `Sources/ReelStudio`, `Resources` and `Locali
 - Add a real Smart Cut screenshot (needs a device or a speech file).
 - Rebuild the Mac app to capture fresh Mac screens with neutral demo data.
 - Trim the unused rules left in the stylesheet (`site-b21.css`), and rename it back to `site.css`.
+
+## 23 Nov, later: the previous layout is back
+
+Ryan found the first remodel too reduced, so the page uses the previous site's layout again, with current screens:
+
+- **Editing carousel (7 cards):** Film it, Edit it all together, Cut by hand, Smart Cut, Trim audio by the digit, Captions, Share. The hand-built phones are redrawn in the build 47 look and keep their moving parts (playheads, ticking digits, captions lighting up word by word, Smart Cut stepping through Tight, Natural and Relaxed).
+- **Teleprompter carousel (3 cards):** the camera with the gold recording zone and the two-line reading panel (tap record for the timer), the Level page (tap a level), and the script list with times. The old "turn your phone sideways" card is replaced because build 48 no longer has that screen.
+- **Photo carousel (5 real screens).**
+- **Voice:** recording in progress, the Text tool (tap a paragraph to hear it), Export (pick a format, then tap the button).
+- **Straight from the app:** Video, Voice, Photo, Teleprompter, Library.
+- **Mac ring carousel (10 tabs):** Home, Video editor, Audio, Photo, Presentation, Slides, Auto captions, Scripts, New project, Messages, freshly captured from the current Mac app (1.2.10, built from `ios-build-48` in a separate worktree) in dark mode, using the app's test library with every demo name made neutral. Real Mac projects were never opened.
+- Gone: the day-and-night strip and the separate iPad strip (the iPad stays in the hero).
+- Kept: one-subscription pricing, Founding 100, the launch-list form, the FAQ, and the other session's legal changes (Mentions légales link, "Coming soon on the App Store", renewal sentence).
