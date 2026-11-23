@@ -19,7 +19,7 @@ Live: https://transformationstudio.site · commit on `main`: see the last line o
 | Teleprompter | Older screens | Script list with time estimate ("33 words · about 0:12"), Level 2 Delivery in yellow with the two-line reading band | UPDATED |
 | Transcripts | Hold-a-paragraph demo from an older design | Real Voice, Text and Export screens in pink | UPDATED |
 | Real screens rail | Older screens | "One library": Library page, the Recent / All / Folders tabs, four coloured kinds | UPDATED |
-| Day and night | Missing | New strip, Mac day and night (the iPhone app has no day mode) | NEW |
+| Day and night | Missing | Added, then removed at Ryan's request (24 Nov) | REMOVED |
 | Mac | Older images | Current Mac Home, Record, Teleprompter, Captions, Text; "Included in the same subscription" | UPDATED |
 | iPad | Only in the hero | New small strip with the build 47 iPad Home | NEW |
 | Pricing | Two different cards, "No watermark, export up to 4K" | One subscription, same three lines and same button on both cards, US dollars note, honesty line | UPDATED |
