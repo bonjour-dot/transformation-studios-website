@@ -208,6 +208,8 @@ svg.f{fill:currentColor;stroke:none}
 .badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .badge:not([hidden]){display:inline-flex;margin:16px 10px 0}
 .badge img{display:block;height:40px;width:auto}
+/* Until the App Store listing exists: a plain label, not Apple's badge, and not a link */
+.badge-soon:not([hidden]){display:inline-flex;align-items:center;min-height:40px;margin:16px 10px 0;padding:0 16px;border-radius:10px;border:1px solid var(--border);color:var(--muted);font-size:14px;font-weight:700;text-align:center;cursor:default}
 .video small{position:absolute;left:16px;bottom:14px;background:rgba(20,30,25,.78);color:#FBF3E7;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700}
 .s-lead{max-width:640px;margin:16px auto 0;color:#4A5852;font-size:18px}
 .who{display:grid;gap:24px;margin-top:56px;background:#fff;border-radius:28px;padding:26px;box-shadow:0 20px 50px rgba(30,43,37,.08);text-align:left}
@@ -278,7 +280,10 @@ footer a{color:#C9DACF;text-decoration:none;margin-left:18px;display:inline-bloc
 .doc .lead{margin:14px 0 0}
 .doc p,.doc li{color:#C9DACF;font-size:17px;line-height:1.6}
 .doc p{margin:12px 0}
-.doc ul{padding-left:22px;margin:12px 0;display:grid;gap:8px}
+.doc ul,.doc ol{padding-left:22px;margin:12px 0;display:grid;gap:8px}
+.doc li>ul,.doc li>ol{margin:8px 0 0}
+.doc blockquote{margin:16px 0;padding:4px 0 4px 16px;border-left:3px solid var(--border)}
+.doc h3{font-size:20px;line-height:1.2;margin:28px 0 8px}
 .doc b{color:var(--text)}
 .doc a:not(.btn){overflow-wrap:anywhere}
 .doc details p{color:var(--muted)}

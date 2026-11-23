@@ -52,7 +52,7 @@ const SITE = {
   appStoreUrl: "#",          // iPhone and iPad App Store link (TBD)
   macAppStoreUrl: "#",       // Mac App Store link (TBD)
   storyVideoUrl: "",         // YouTube or Vimeo link for "Ryan's story" (TBD)
-  supportEmail: "hello@transformationstudio.site"
+  supportEmail: "admin@transformationstudio.site"
 };
 ```
 

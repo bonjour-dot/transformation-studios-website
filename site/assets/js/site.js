@@ -19,6 +19,8 @@ const SITE = {
     a.setAttribute("role","button");
     a.addEventListener("click",function(e){e.preventDefault();lastBtn=a;if(dlg&&dlg.showModal){dlg.showModal();var em=dlg.querySelector('input[type=email]');if(em)em.focus()}else if(dlg){dlg.setAttribute("open","")}})});
   document.querySelectorAll("[data-store]").forEach(function(a){if(storeHref){a.href=storeHref;a.rel="noopener";a.hidden=false}});
+  // "Coming soon on the App Store" stands in for the badges until the App Store link is set.
+  document.querySelectorAll("[data-store-soon]").forEach(function(s){s.hidden=!!storeHref});
   if(storeHref&&dlg)dlg.remove();
   else if(dlg){
     dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
