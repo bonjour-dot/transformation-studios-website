@@ -189,9 +189,9 @@ svg.f{fill:currentColor;stroke:none}
 
 /* STORY / FAQ / CLOSE */
 .story{background:#FBF3E7;color:#1E2B25}
-.story .eyebrow{color:#C8553D}
+.story .eyebrow{color:#AD4430}
 .story h2{font-size:clamp(32px,6vw,56px);line-height:1.05;margin-top:12px}
-.story h2 em{color:#C8553D;font-weight:600}
+.story h2 em{color:#AD4430;font-weight:600}
 .beats{display:grid;gap:26px;margin-top:40px;text-align:left}
 @media(min-width:760px){.beats{grid-template-columns:repeat(3,1fr)}}
 .beats .n{font-family:'Fraunces',serif;font-size:52px;font-weight:700;line-height:1}
@@ -220,7 +220,7 @@ svg.f{fill:currentColor;stroke:none}
 .who p{color:#4A5852;margin:10px 0 0}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .facts span{background:#F3EADC;border-radius:999px;padding:7px 14px;font-size:14px;color:#3A4842}
-.facts b{color:#C8553D}
+.facts b{color:#AD4430}
 .mv{background:#FBF3E7;padding-top:0}
 .mv-grid{display:grid;gap:16px}
 @media(min-width:760px){.mv-grid{grid-template-columns:1fr 1fr}}
@@ -414,3 +414,7 @@ html{overflow-x:hidden}
 .who-tile{color:#0F1A16}
 .who-tile svg{color:inherit}
 .wordmark i{color:var(--script)}
+/* hero chips: the four tools in their colours, plus Auto captions and Voice to text */
+.c3{background:#1F4A66;color:#5CC8FF}.c4{background:#5A2347;color:#FF7CC4}
+.c5{display:none;background:#1B4D3A;color:#5CE0A6}.c6{display:none;background:#5A2347;color:#FF7CC4}
+@media(min-width:760px){.c4{left:46%;right:auto;bottom:3%}.c5{display:flex;right:19%;bottom:4%}.c6{display:flex;right:1%;bottom:24%}}
