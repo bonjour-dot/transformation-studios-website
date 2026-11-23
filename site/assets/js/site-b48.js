@@ -80,9 +80,6 @@ const SITE = {
   if(rb)rb.addEventListener("click",function(){if(tp.classList.toggle("recording")){t=0;tick();tm=setInterval(tick,1000)}else clearInterval(tm)});
   // Level page: tap a level
   document.querySelectorAll("#lv .b4lv").forEach(function(b,_,all){b.addEventListener("click",function(){[].forEach.call(document.querySelectorAll("#lv .b4lv"),function(x){x.classList.toggle("on",x===b)})})});
-  // voice recording clock
-  var vr=document.getElementById("vrec"),vs=2;
-  if(vr&&!rm)setInterval(function(){vs=(vs+1)%600;vr.textContent=Math.floor(vs/60)+":"+String(vs%60).padStart(2,"0")},1000);
   // transcript: choose a paragraph to hear it
   var box=document.getElementById("trx");
   if(box){var ps=box.querySelectorAll(".para"),bar=document.getElementById("trx-bar"),tt=document.getElementById("trx-t"),pt;
@@ -120,6 +117,38 @@ const SITE = {
   // Export: formats take turns, and the button shows it worked
   (function(){var f=document.getElementById("fmt");if(!f)return;var bs=f.querySelectorAll("button"),n=0,eb=document.getElementById("shbtn");
     autoplay(f.closest(".scr"),2200,function(){n=(n+1)%bs.length;bs[n].click();if(n%2===0)setTimeout(function(){eb.click()},900)})})();
+  // ---- Cut: the chosen part moves, start, end and length follow ----
+  (function(){var sel=document.getElementById("cut-sel");if(!sel)return;var st=document.getElementById("cut-start"),en=document.getElementById("cut-end"),ln=document.getElementById("cut-len"),
+      parts=[[1.6,6.3],[3.2,8.0],[0.4,4.1],[5.5,10.8],[2.4,7.2]],n=0;
+    function show(p){st.textContent=fmt(p[0]);en.textContent=fmt(p[1]);ln.textContent=(p[1]-p[0]).toFixed(1)+" s";sel.style.left=(p[0]/12*100)+"%";sel.style.width=((p[1]-p[0])/12*100)+"%"}
+    show(parts[0]);autoplay(document.getElementById("cutd"),2400,function(){n=(n+1)%parts.length;show(parts[n])})})();
+  // ---- Voice: record and stop ----
+  (function(){var d=document.getElementById("vrecd");if(!d)return;var b=document.getElementById("vrecb"),c=document.getElementById("vrec"),secs=2,run;
+    function clock(){clearInterval(run);if(d.classList.contains("rec")&&!rm)run=setInterval(function(){secs++;c.textContent=Math.floor(secs/60)+":"+String(secs%60).padStart(2,"0")},1000)}
+    function toggle(){if(d.classList.toggle("rec")){secs=0;c.textContent="0:00"}else{c.textContent="0:18"}clock()}
+    b.addEventListener("click",toggle);clock();autoplay(d,5200,toggle)})();
+  // ---- Voice: translate ----
+  (function(){var d=document.getElementById("trl");if(!d)return;var tr=JSON.parse(d.getAttribute("data-tr")),bs=d.querySelectorAll("#trl-l button"),n=0;
+    function pick(k){n=k;[].forEach.call(bs,function(x,i){x.classList.toggle("on",i===k)});d.classList.add("swap");setTimeout(function(){document.getElementById("trl-0").textContent=tr[k][0];document.getElementById("trl-1").textContent=tr[k][1];d.classList.remove("swap")},220)}
+    [].forEach.call(bs,function(b,k){b.addEventListener("click",function(){pick(k)})});autoplay(d,2800,function(){pick((n+1)%bs.length)})})();
+  // ---- Photo: layout first ----
+  (function(){var d=document.getElementById("lay");if(!d)return;var pv=document.getElementById("lay-p"),cs=d.querySelectorAll("#lay-c button"),ls=[].slice.call(d.querySelectorAll("#lay-l button")),nm=document.getElementById("lay-n"),order=ls.map(function(x){return x.dataset.k}),n=order.indexOf("l3a");
+    function setLay(k){var c=k.charAt(1);n=order.indexOf(k);pv.className="b4col "+k;[].forEach.call(cs,function(x){x.classList.toggle("on",x.dataset.c===c)});
+      ls.forEach(function(x){x.classList.toggle("hide",x.dataset.c!==c);x.classList.toggle("on",x.dataset.k===k)});nm.textContent="Add "+c+" photos"}
+    [].forEach.call(cs,function(b){b.addEventListener("click",function(){setLay(ls.filter(function(x){return x.dataset.c===b.dataset.c})[0].dataset.k)})});
+    ls.forEach(function(b){b.addEventListener("click",function(){setLay(b.dataset.k)})});
+    autoplay(d,2200,function(){setLay(order[(n+1)%order.length])})})();
+  // ---- Photo: filters ----
+  (function(){var d=document.getElementById("flt");if(!d)return;var pv=d.querySelectorAll("#flt-p img"),bs=d.querySelectorAll("#flt-l button"),n=0;
+    function pick(k){n=k;[].forEach.call(bs,function(x,i){x.classList.toggle("on",i===k)});[].forEach.call(pv,function(m){m.style.filter=bs[k].dataset.f})}
+    [].forEach.call(bs,function(b,k){b.addEventListener("click",function(){pick(k)})});autoplay(d,2000,function(){pick((n+1)%bs.length)})})();
+  // ---- Photo: adjust on a dial ----
+  (function(){var d=document.getElementById("adj");if(!d)return;var pv=d.querySelectorAll("#adj-p img"),bs=d.querySelectorAll("#adj-l button"),v=document.getElementById("adj-v"),tk=d.querySelector(".b4dial .ticks"),mode=1,val=12,dir=1,steps=0;
+    function apply(){var x=1+val/100,f=bs[mode].dataset.a;var css=f==="auto"?"brightness(1.08) contrast(1.08) saturate(1.15)":f+"("+x.toFixed(2)+")";
+      [].forEach.call(pv,function(m){m.style.filter=css});v.textContent=f==="auto"?"Auto":(val>0?"+":"")+val;tk.style.backgroundPosition=(val*1.4)+"px 0"}
+    function pick(k){mode=k;[].forEach.call(bs,function(x,i){x.classList.toggle("on",i===k)});val=k===0?0:12;apply()}
+    [].forEach.call(bs,function(b,k){b.addEventListener("click",function(){pick(k)})});apply();
+    autoplay(d,700,function(){steps++;if(steps%7===0){pick((mode+1)%bs.length);return}if(mode===0)return;val+=dir*8;if(val>=36||val<=-24)dir=-dir;apply()})})();
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}
