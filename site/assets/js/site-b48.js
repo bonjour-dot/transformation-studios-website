@@ -152,9 +152,9 @@ const SITE = {
   // ---- Photo: the camera takes a photo, or switches to video and films ----
   (function(){var d=document.getElementById("shoot");if(!d)return;var b=document.getElementById("shoot-b"),ms=d.querySelectorAll("#shoot-m button"),t=document.getElementById("shoot-t"),last=document.getElementById("shoot-last"),run,secs=0,shots=0,
       pics=["ph-s1","ph-s4","ph-s3","ph-s6"];
-    function mode(m){d.classList.remove("photo","video","filming");d.classList.add(m);clearInterval(run);[].forEach.call(ms,function(x){x.classList.toggle("on",x.dataset.m===m)})}
+    function mode(m){d.classList.remove("m-photo","m-video","filming");d.classList.add("m-"+m);clearInterval(run);[].forEach.call(ms,function(x){x.classList.toggle("on",x.dataset.m===m)})}
     function thumb(src,vid){last.style.backgroundImage="url(/assets/img/build47/"+src+".jpg)";last.classList.toggle("vid",!!vid);last.classList.add("pop");setTimeout(function(){last.classList.remove("pop")},300)}
-    function press(){if(d.classList.contains("photo")){d.classList.remove("snap");void d.offsetWidth;d.classList.add("snap");thumb(pics[shots++%pics.length]);return}
+    function press(){if(d.classList.contains("m-photo")){d.classList.remove("snap");void d.offsetWidth;d.classList.add("snap");thumb(pics[shots++%pics.length]);return}
       if(d.classList.toggle("filming")){secs=0;t.textContent="0:00";run=setInterval(function(){secs++;t.textContent="0:"+String(secs).padStart(2,"0")},1000)}else{clearInterval(run);thumb("ph-s2",true)}}
     b.addEventListener("click",press);[].forEach.call(ms,function(x){x.addEventListener("click",function(){mode(x.dataset.m)})});
     var script=["press","press","video","press","wait","wait","press","photo"],k=0;
