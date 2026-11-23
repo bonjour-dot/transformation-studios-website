@@ -1020,3 +1020,21 @@ html{overflow-x:hidden}
 @keyframes flash{from{opacity:.85}to{opacity:0}}
 .b4shoot.filming .zone,.b4shoot.filming{box-shadow:inset 0 0 0 1cqw rgba(229,72,61,.7)}
 .b4last{display:block;flex:none}.b4shoot .bot .flip{flex:none}
+/* ---- Hero: bigger devices (wider stage on computers, bigger iPad everywhere) ---- */
+@media(min-width:760px){
+  .hero .stage{max-width:none;width:min(1400px,calc(100vw - 32px));left:50%;transform:translateX(-50%);aspect-ratio:1400/740;margin-top:50px}
+  .st-mac{left:17%;top:2%;width:58%}
+  .st-phone{left:3%;top:10%;width:21%}
+  .st-ipad{left:61%;top:30%;width:37%}
+  .c1{left:2%;top:4%}.c2{right:3%;top:8%}.c3{left:27%;bottom:6%}.c4{left:46%;bottom:2%}
+}
+@media(max-width:759px){
+  .stage{aspect-ratio:1/1.52}
+  .st-phone{left:3%;top:15%;width:58%}
+  .st-ipad{left:50%;top:60%;width:49%}
+  .c1{left:1%;top:10%}.c2{right:1%;top:44%}.c3{left:2%;bottom:1%}.c4{right:2%;bottom:1%}
+}
+
+.b4modes span{font-weight:700;font-size:3.4cqw;padding:1.8cqw 4cqw;border-radius:99px;background:#5CC8FF;color:#06223F}
+.b4shoot.m-video .b4modes span{background:#FF8A5C;color:#2A1008}
+.b4shoot.m-video .zone{inset:0 0 30cqw}
