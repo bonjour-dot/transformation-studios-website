@@ -96,6 +96,30 @@ const SITE = {
   if(fm){var fb=fm.querySelectorAll("button"),eb=document.getElementById("shbtn"),et=document.getElementById("shbtn-t"),sel=fb[0],ft;
     fb.forEach(function(b){b.addEventListener("click",function(){sel=b;fb.forEach(function(x){x.classList.toggle("on",x===b)});et.textContent="Export "+b.dataset.n})});
     eb.addEventListener("click",function(){et.textContent=sel.dataset.d;clearTimeout(ft);ft=setTimeout(function(){et.textContent="Export "+sel.dataset.n},1500)})}
+  // ---- The demos play by themselves (like a live screen), pause for a few seconds when touched, and stay still with reduce motion ----
+  function autoplay(root,ms,step){if(rm||!root)return;var held=0,vis=false;
+    ["pointerdown","focusin","keydown"].forEach(function(e){root.addEventListener(e,function(){held=Date.now()+8000},{passive:true})});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting},{threshold:.2}).observe(root);else vis=true;
+    setInterval(function(){if(vis&&!document.hidden&&Date.now()>held)step()},ms)}
+  function cycle(sel,cls,ms,root){var els=[].slice.call(document.querySelectorAll(sel));if(!els.length)return;var n=0;
+    autoplay(root||els[0].closest(".scr"),ms,function(){els[n].classList.remove(cls);n=(n+1)%els.length;els[n].classList.add(cls)})}
+  // Edit it all together and the other video tools: the dock lights up tool by tool
+  [].forEach.call(document.querySelectorAll(".b4.v"),function(scr){var d=scr.querySelectorAll(".b4dock span");if(!d.length||scr.querySelector(".b4dock .on"))return;var n=-1;
+    autoplay(scr,1300,function(){if(n>=0)d[n].classList.remove("on");n=(n+1)%d.length;d[n].classList.add("on")})});
+  // Cut: Play, Split, Trim, Add and Zoom take turns
+  var ct=document.querySelectorAll(".b4tools span");if(ct.length){var cn=2;autoplay(ct[0].closest(".scr"),1500,function(){ct[cn].classList.remove("on");cn=(cn+1)%ct.length;ct[cn].classList.add("on")})}
+  // Captions: the styles take turns
+  cycle(".b4styles span","on",1900);
+  // Teleprompter: records a take, stops, starts again
+  if(tp&&rb){var auto=true;rb.addEventListener("click",function(){auto=false},true);
+    autoplay(tp,7000,function(){if(!auto)return;if(tp.classList.toggle("recording")){t=0;tick();clearInterval(tm);tm=setInterval(tick,1000)}else clearInterval(tm)})}
+  // Level: Time, Delivery and Smart take turns
+  (function(){var lv=document.querySelectorAll("#lv .b4lv");if(!lv.length)return;var n=1;autoplay(document.getElementById("lv"),2600,function(){n=(n+1)%lv.length;[].forEach.call(lv,function(x,i){x.classList.toggle("on",i===n)})})})();
+  // Transcript: the paragraphs play one after another
+  (function(){var b=document.getElementById("trx");if(!b)return;var ps=b.querySelectorAll(".para"),n=1;autoplay(b,3200,function(){n=(n+1)%ps.length;ps[n].click()})})();
+  // Export: formats take turns, and the button shows it worked
+  (function(){var f=document.getElementById("fmt");if(!f)return;var bs=f.querySelectorAll("button"),n=0,eb=document.getElementById("shbtn");
+    autoplay(f.closest(".scr"),2200,function(){n=(n+1)%bs.length;bs[n].click();if(n%2===0)setTimeout(function(){eb.click()},900)})})();
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}

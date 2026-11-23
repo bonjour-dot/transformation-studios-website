@@ -724,10 +724,7 @@ dialog#launch .row .btn{flex:1}
 .dn-pair{display:grid;gap:22px;width:100%;max-width:1000px}
 @media(min-width:800px){.dn-pair{grid-template-columns:1fr 1fr}}
 .dn-pair figcaption{font-weight:700;color:var(--muted);margin-top:12px;text-align:center}
-.ipad{padding:2.4%}
 .ipad picture,.ipad img{display:block}
-.st-ipad .ipad img{aspect-ratio:16/10;object-fit:cover;border-radius:3cqw;width:100%}
-.ipadstrip .ipad img{aspect-ratio:16/10;object-fit:cover}
 .stage .phone>picture>img{border-radius:13cqw}
 .lclose{margin-top:14px;width:100%}.lclose[hidden]{display:none}
 .steps.four{justify-content:flex-start}
@@ -924,3 +921,26 @@ html{overflow-x:hidden}
 .b4exp svg{width:4.6cqw;height:4.6cqw}
 .b4lab{font-size:2.8cqw;font-weight:700;letter-spacing:.12em;color:#A9C2B5;margin:3.4cqw 4.5cqw 0;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.b4vid .pbar,.b4strip .ph,.b4wave .ph2,.b4play .tr i,.b4bars i,.b4ring::before{animation:none}}
+
+/* iPad (landscape, the real 4:3 screen): corners as a share of its own size, an even bezel all round */
+.ipad{border-radius:4.6%/6.1%;padding:2.2%;container-type:normal}
+.ipad>picture>img,.ipad>img{border-radius:2.6%/3.5%;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+/* Founding 100: the three cards share rows, so the labels, headings, text and buttons line up */
+@media(min-width:900px){
+  .fgrid{grid-template-rows:auto auto 1fr auto;row-gap:0}
+  .fcard{display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start}
+  .fcard h3{font-size:clamp(22px,2.1vw,27px);line-height:1.15;align-self:start}
+  .fcard p{margin:12px 0 22px}
+  .fcard .fb{align-self:end}
+}
+.fcard h3{text-wrap:balance}
+
+/* the demo video plays: colours drift and the picture breathes, like a live clip */
+.b4vid{background-size:100% 220%;animation:vidmove 7s ease-in-out infinite alternate}
+@keyframes vidmove{from{background-position:50% 0}to{background-position:50% 100%}}
+.b4vid .ovl{animation:ovl 3.5s ease-in-out infinite alternate}
+@keyframes ovl{from{transform:scale(1)}to{transform:scale(1.06)}}
+.b4dock span,.b4dock i,.b4tools span,.b4styles span,.b4lv,.b4fmt button{transition:all .3s}
+@media (prefers-reduced-motion:reduce){.b4vid,.b4vid .ovl{animation:none}}
+.fcard .fb{position:relative}
+.fcard .sharemsg{position:absolute;left:0;right:0;top:100%;margin-top:6px}

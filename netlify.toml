@@ -26,16 +26,16 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# CSS and JS keep their names when edited, so browsers re-check them after an hour.
+# CSS and JS: browsers must check for a new copy on every visit, so a deploy never shows new pages with old styles.
 [[headers]]
   for = "/assets/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/assets/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # www goes to the bare domain.
 [[redirects]]
