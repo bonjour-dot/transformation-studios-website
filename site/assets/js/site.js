@@ -1,16 +1,47 @@
 // Site settings: change these in one place.
 const SITE = {
-  appStoreUrl: "#",        // iPhone and iPad App Store link
-  macAppStoreUrl: "#",     // Mac App Store link
+  appStoreUrl: "",         // iPhone and iPad App Store link. Empty = launch-list form. When set, every join button goes straight to it.
+  campaignToken: "website",// added to the App Store link as ?ct=...&mt=8
+  foundingCount: 0,        // Founding places taken (0 to 100). Update by hand. 0 = "places open 8 December".
   storyVideoUrl: "",       // YouTube or Vimeo link for "Ryan's story"
-  supportEmail: "hello@transformationstudio.site"
+  supportEmail: "admin@transformationstudio.site"
 };
 
 (function(){
   var rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // App Store buttons and badges: use the real links once they are set; until then buttons scroll to Pricing and badges stay hidden
+  // Join buttons. No App Store link yet: they open the launch-list form. Link set: they go straight to the App Store.
   function live(u){return !!u&&u!=="#"}
-  document.querySelectorAll("[data-store]").forEach(function(a){var u=a.getAttribute("data-store")==="mac"?SITE.macAppStoreUrl:SITE.appStoreUrl;if(live(u)){a.href=u;a.rel="noopener";a.hidden=false}});
+  var storeHref="";
+  if(live(SITE.appStoreUrl)){storeHref=SITE.appStoreUrl+(SITE.appStoreUrl.indexOf("?")<0?"?":"&")+"ct="+encodeURIComponent(SITE.campaignToken)+"&mt=8"}
+  var dlg=document.getElementById("launch"),lastBtn=null;
+  document.querySelectorAll("[data-join]").forEach(function(a){
+    if(storeHref){a.href=storeHref;a.rel="noopener";return}
+    a.setAttribute("role","button");
+    a.addEventListener("click",function(e){e.preventDefault();lastBtn=a;if(dlg&&dlg.showModal){dlg.showModal();var em=dlg.querySelector('input[type=email]');if(em)em.focus()}else if(dlg){dlg.setAttribute("open","")}})});
+  document.querySelectorAll("[data-store]").forEach(function(a){if(storeHref){a.href=storeHref;a.rel="noopener";a.hidden=false}});
+  if(storeHref&&dlg)dlg.remove();
+  else if(dlg){
+    dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
+    dlg.querySelectorAll("[data-close]").forEach(function(b){b.addEventListener("click",function(){dlg.close()})});
+    dlg.addEventListener("close",function(){if(lastBtn)lastBtn.focus()});
+    var f=dlg.querySelector("form"),msg=dlg.querySelector(".lmsg");
+    f.addEventListener("submit",function(e){e.preventDefault();
+      var em=f.querySelector('input[type=email]');
+      if(!em.value||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value)){msg.textContent="Type a valid email address, like name@example.com.";msg.className="lmsg err";em.focus();return}
+      var body=new URLSearchParams(new FormData(f)).toString();
+      msg.className="lmsg";msg.textContent="";
+      fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body}).then(function(r){
+        if(!r.ok)throw 0;f.hidden=true;msg.className="lmsg ok";msg.textContent="You're on the list. We'll send the App Store link on 8 December.";var cb=dlg.querySelector(".lclose");if(cb)cb.hidden=false
+      }).catch(function(){msg.className="lmsg err";msg.textContent="That did not go through. Try again, or write to "+SITE.supportEmail+"."})})}
+  // Founding 100: places taken
+  var fc=Math.max(0,Math.min(100,SITE.foundingCount|0)),fd=document.getElementById("fdots"),fl=document.getElementById("fcount");
+  if(fd&&fl){if(fc>0){var h="";for(var i=0;i<100;i++)h+='<i'+(i<fc?' class="on"':'')+'></i>';fd.innerHTML=h;fd.hidden=false;fl.textContent=fc+" of 100"}else{fd.hidden=true;fl.textContent="Founding places open 8 December"}}
+  // Founding Ambassador: share the link
+  var sb=document.getElementById("sharelink"),sm=document.getElementById("sharemsg");
+  if(sb)sb.addEventListener("click",function(e){e.preventDefault();var u="https://transformationstudio.site/",d={title:"Transformation Studio",text:"Film, cut, caption and share, all in one app. Built by a missionary for the mission field.",url:u};
+    if(navigator.share){navigator.share(d).catch(function(){})}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){sm.textContent="Link copied";setTimeout(function(){sm.textContent=""},4000)}).catch(function(){sm.textContent=u})}
+    else{sm.textContent=u}});
   document.querySelectorAll("[data-support]").forEach(function(a){a.href="mailto:"+SITE.supportEmail;if(a.hasAttribute("data-fill"))a.textContent=SITE.supportEmail});
   // Story video: a click-to-play preview. Nothing loads from YouTube or Vimeo until the visitor clicks.
   var vbox=document.querySelector(".video"),vurl=SITE.storyVideoUrl||"",vm,vsrc="";
@@ -19,30 +50,6 @@ const SITE = {
   if(vbox&&vsrc){var lab=vbox.querySelector("small");if(lab)lab.textContent="RYAN'S STORY \u00b7 PLAY VIDEO";vbox.classList.add("ready");vbox.setAttribute("role","button");vbox.tabIndex=0;vbox.setAttribute("aria-label","Play Ryan's story");
     var playv=function(){if(vbox.querySelector("iframe"))return;var f=document.createElement("iframe");f.src=vsrc;f.title="Ryan's story";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";vbox.textContent="";vbox.appendChild(f);vbox.classList.add("playing");vbox.removeAttribute("role");vbox.removeAttribute("tabindex")};
     vbox.addEventListener("click",playv);vbox.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();playv()}})}
-  // waveform bars
-  var w=document.getElementById("wave");
-  if(w){var s=7,h="";for(var i=0;i<44;i++){s=(s*9301+49297)%233280;var v=30+Math.round(s/233280*62);h+='<i style="height:'+v+'%"></i>'}w.insertAdjacentHTML("afterbegin",h)}
-  // trim digits: start value ticks forward, like typing an exact time
-  var ts=document.getElementById("tr-s"),cur=document.getElementById("ev-cur"),k=0;
-  if(ts&&!rm)setInterval(function(){k=(k+1)%40;var t=k*0.3;ts.textContent="0:"+(t<10?"0":"")+t.toFixed(1);var c=Math.floor(k*5.6);cur.textContent=Math.floor(c/60)+":"+String(c%60).padStart(2,"0")},700);
-  // captions word highlight
-  var cw=document.querySelectorAll("#capw span"),ci=0;
-  if(cw.length){cw[0].classList.add("on");if(!rm)setInterval(function(){cw[ci].classList.remove("on");ci=(ci+1)%cw.length;cw[ci].classList.add("on")},480)}
-  // teleprompter demo record
-  var tp=document.getElementById("tp"),rb=document.getElementById("recb"),tm,t=0;
-  function tick(){t++;var r=180-t;document.getElementById("tp-t").textContent=Math.floor(t/60)+":"+String(t%60).padStart(2,"0");document.getElementById("tp-left").textContent=Math.floor(r/60)+":"+String(r%60).padStart(2,"0");document.getElementById("tp-prog").style.width=(t/180*100)+"%";if(t>=180)t=0}
-  if(rb)rb.addEventListener("click",function(){if(tp.classList.toggle("recording")){t=0;tick();tm=setInterval(tick,1000)}else clearInterval(tm)});
-  // transcript hold
-  var box=document.getElementById("trx");
-  if(box){var ps=box.querySelectorAll(".para"),pop=document.getElementById("pop");
-    function on(el){ps.forEach(function(x){x.classList.toggle("on",x===el)});box.classList.add("holding");var b=box.getBoundingClientRect(),r=el.getBoundingClientRect(),sc=box.offsetWidth/b.width||1,y=(r.top-b.top)*sc,top=y-pop.offsetHeight-8;if(top<box.offsetHeight*0.1)top=y+r.height*sc+8;pop.style.top=top+"px"}
-    ps.forEach(function(el){var tmr;el.addEventListener("click",function(){on(el)});el.addEventListener("pointerdown",function(){tmr=setTimeout(function(){on(el)},350)});["pointerup","pointerleave"].forEach(function(e){el.addEventListener(e,function(){clearTimeout(tmr)})})});
-    window.addEventListener("load",function(){on(ps[1])});window.addEventListener("resize",function(){var c=box.querySelector(".para.on");if(c)on(c)})}
-  // share sheet: pick a version, the big button follows; tap it to copy
-  var shw=document.getElementById("shw");
-  if(shw){var chips=shw.querySelectorAll(".shchip"),sb=document.getElementById("shbtn"),st=document.getElementById("shbtn-t"),lab="Copy all",ft;
-    chips.forEach(function(c){c.addEventListener("click",function(){chips.forEach(function(x){x.classList.toggle("on",x===c)});lab=c.getAttribute("data-copy");st.textContent=lab})});
-    sb.addEventListener("click",function(){st.textContent="Copied";clearTimeout(ft);ft=setTimeout(function(){st.textContent=lab},1500)})}
   // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
   function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
   function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}

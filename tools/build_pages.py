@@ -19,7 +19,7 @@ LOGO = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true">
 NAV = '''<header class="nav">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Transformation Studio home"><svg><use href="#logo"/></svg><span class="wordmark"><b>Transformation</b><i>STUDIO</i></span></a>
-    <nav class="nav-links" aria-label="Main"><a href="/#all">All in one</a><a href="/#edit">Editing</a><a href="/#prompter">Teleprompter</a><a href="/#voice">Transcripts</a><a href="/#mac">Mac</a><a href="/#pricing">Pricing</a><a href="/#story">Our story</a></nav>
+    <nav class="nav-links" aria-label="Main"><a href="/#all">Tools</a><a href="/#how">How it works</a><a href="/#prompter">Teleprompter</a><a href="/#mac">Mac</a><a href="/#founding">Founding 100</a><a href="/#pricing">Pricing</a><a href="/#story">Our story</a></nav>
     <a class="btn btn-primary" href="/#pricing" data-store="ios">Try it free</a>
   </div>
 </header>'''
@@ -29,7 +29,7 @@ FOOTER = ('<footer><div class="wrap"><span>Made in Toulouse, France · Transform
 
 DRAFT = '<p class="draft" role="note"><b>DRAFT: Ryan to review.</b> This page is not final. Anything marked <mark>[TO CONFIRM]</mark> still needs checking before launch.</p>'
 TC = '<mark>[TO CONFIRM]</mark>'
-MAIL = '<a data-support data-fill href="mailto:hello@transformationstudio.site">hello@transformationstudio.site</a>'
+MAIL = '<a data-support data-fill href="mailto:admin@transformationstudio.site">admin@transformationstudio.site</a>'
 
 
 def page(path, title, desc, body, robots=None):
@@ -52,7 +52,7 @@ def page(path, title, desc, body, robots=None):
 <meta property="og:title" content="{title} — Transformation Studio">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{ORIGIN}/assets/img/share-reaching-many-b21.jpg">
+<meta property="og:image" content="{ORIGIN}/assets/img/share-build47.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F1A16">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -198,7 +198,7 @@ terms = doc("Terms", "Terms of use", f"Last updated {UPDATED}.", f'''
 
 # ---------------------------------------------------------------- support
 support = doc("Support", "How can we help?", "Write to us and a real person will answer.", f'''
-    <p class="mailrow"><a class="btn btn-primary" data-support href="mailto:hello@transformationstudio.site">Email support</a><span>{MAIL}</span></p>
+    <p class="mailrow"><a class="btn btn-primary" data-support href="mailto:admin@transformationstudio.site">Email support</a><span>{MAIL}</span></p>
 
     <h2 id="cancel">Cancel your subscription</h2>
     <p>Your subscription is managed by Apple, so you cancel it in your Apple ID settings. Deleting the app does not cancel it.</p>
