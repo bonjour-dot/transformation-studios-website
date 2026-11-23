@@ -32,7 +32,7 @@ const SITE = {
       msg.className="lmsg";msg.textContent="";
       fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body}).then(function(r){
         if(!r.ok)throw 0;f.hidden=true;msg.className="lmsg ok";msg.textContent="You're on the list. We'll send the App Store link on 8 December.";var cb=dlg.querySelector(".lclose");if(cb)cb.hidden=false
-      }).catch(function(){msg.className="lmsg err";msg.textContent="That did not go through. Try again, or write to "+SITE.supportEmail+"."})})}
+      }).catch(function(){msg.className="lmsg err";msg.textContent="That did not go through. ";var a=document.createElement("a"),pick=f.querySelector("input[name=interest]:checked");a.href="mailto:"+SITE.supportEmail+"?subject="+encodeURIComponent("Launch list")+"&body="+encodeURIComponent("Please add me to the launch list.\nEmail: "+em.value+"\nI'm here to: "+(pick?pick.value:"use the app"));a.textContent="Join by email instead";msg.appendChild(a)})})}
   // Founding 100: places taken
   var fc=Math.max(0,Math.min(100,SITE.foundingCount|0)),fd=document.getElementById("fdots"),fl=document.getElementById("fcount");
   if(fd&&fl){if(fc>0){var h="";for(var i=0;i<100;i++)h+='<i'+(i<fc?' class="on"':'')+'></i>';fd.innerHTML=h;fd.hidden=false;fl.textContent=fc+" of 100"}else{fd.hidden=true;fl.textContent="Founding places open 8 December"}}
