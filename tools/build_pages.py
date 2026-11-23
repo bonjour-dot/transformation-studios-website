@@ -107,22 +107,28 @@ def inline(t):
     """Markdown inline marks -> HTML. Text is escaped first; only the marks become tags."""
     t = html.escape(t, quote=False)
     t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    t = re.sub(r"(?<![\w.:/-])([\w.+-]+@[\w-]+(?:\.[\w-]+)+)", r'<a href="mailto:\1">\1</a>', t)
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
     t = re.sub(r"(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])", r"<i>\1</i>", t)
     t = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+|mailto:[^)\s]+|/[^)\s]*)\)", r'<a href="\2" rel="noopener">\1</a>', t)
     t = re.sub(r"(?<![\w/\">:.@-])(https?://[^\s<)]+[^\s<).,;:])", r'<a href="\1" rel="noopener">\1</a>', t)
-    t = re.sub(r"(?<![\w.:/\">-])([\w.+-]+@[\w-]+(?:\.[\w-]+)+)", r'<a href="mailto:\1">\1</a>', t)
     return t
 
 
 def render_md(text):
     """A small Markdown renderer for the legal texts: headings, paragraphs, bullet and numbered lists
-    (one level of nesting), tables, blockquotes and rules. Lines of one paragraph are joined with a space."""
+    (one level of nesting), tables, blockquotes and rules. In a paragraph, a long line that stops mid-sentence
+    was wrapped by hand and joins the next with a space; any other line break is kept (<br>), so the address
+    lines of the mentions légales stay one per line."""
     out, para, lines, i = [], [], text.replace("\r\n", "\n").split("\n"), 0
 
     def flush():
         if para:
-            out.append("<p>" + inline(" ".join(x.strip() for x in para)) + "</p>")
+            h = inline(para[0].strip())
+            for prev, line in zip(para, para[1:]):
+                wrapped = len(prev.strip()) >= 80 and not re.search(r"[.!?:;]$", prev.strip())
+                h += (" " if wrapped else "<br>\n    ") + inline(line.strip())
+            out.append("<p>" + h + "</p>")
             para.clear()
 
     item = re.compile(r"^(\s*)([-*+]|\d+[.)])\s+(.*)$")
