@@ -35,8 +35,9 @@ svg.f{fill:currentColor;stroke:none}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo svg{width:40px;height:40px;flex:none}
 .wordmark{display:flex;flex-direction:column;line-height:1}
-.wordmark b{font-family:'Brush Script MT','Brush Script Std','Yellowtail',cursive;font-weight:400;font-size:28px;color:var(--text)}
-.wordmark i{font-style:normal;font-size:9px;font-weight:800;letter-spacing:5px;color:var(--script);margin:-1px 0 0 2px}
+/* The word Transformation as a picture of the Mac app's lettering, so it looks the same on every device */
+.wordmark b{display:block;font-size:28px;width:5.214em;height:1.3em;margin:-.15em;background:url(/assets/img/wordmark.svg) no-repeat center/100% 100%;overflow:hidden;text-indent:-999em;white-space:nowrap}
+.wordmark i{font-style:normal;font-size:9px;font-weight:800;letter-spacing:5px;color:var(--video);margin:-1px 0 0 2px}
 .nav-links{display:none;gap:26px;align-items:center}
 .nav-links a{color:#C9DACF;text-decoration:none;font-size:15px}
 .nav .btn{min-height:40px;padding:0 16px;font-size:14px}
@@ -65,8 +66,8 @@ svg.f{fill:currentColor;stroke:none}
   .st-ipad{left:70%;top:14%;width:25%}
 }
 .chip{z-index:5;display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;font-weight:700;font-size:10px;padding:5px 10px;box-shadow:0 10px 30px rgba(0,0,0,.45);white-space:nowrap;border:1px solid currentColor}
-.c1{left:2%;top:27%;background:#5A4C1A;color:#FFD85C}.c2{right:2%;top:29%;background:#5A2E20;color:#FF8A5C}.c3{left:30%;bottom:0;background:#1F4A66;color:#5CC8FF}.c4{right:3%;bottom:0;background:#5A2347;color:#FF7CC4}.c5{display:none;background:#1B4D3A;color:#5CE0A6}.c6{display:none;background:#5A2347;color:#FF7CC4}
-@media(min-width:760px){.chip{font-size:14px;padding:7px 13px}.c1{left:5%;top:9%}.c2{right:2%;top:4%}.c3{left:30%;bottom:8%}.c4{left:46%;right:auto;bottom:3%}.c5{display:flex;left:3%;bottom:30%}.c6{display:flex;right:1%;bottom:22%}}
+.c1{left:2%;top:27%;background:#5A4C1A;color:#FFD85C}.c2{right:2%;top:29%;background:#5A2E20;color:#FF8A5C}.c3{left:30%;bottom:0;background:#1B4D3A;color:#5CE0A6}.c4{right:3%;bottom:0;background:#5A2347;color:#FF7CC4}
+@media(min-width:760px){.chip{font-size:14px;padding:7px 13px}.c1{left:5%;top:9%}.c2{right:2%;top:4%}.c3{left:30%;bottom:8%}.c4{left:50%;right:auto;bottom:4%}}
 
 /* Device frames */
 /* iPhone: corners are a share of the phone's own width (the two values keep them round on a tall shape), with side buttons and a screen that fills the frame */
@@ -85,7 +86,7 @@ svg.f{fill:currentColor;stroke:none}
 
 /* ALL IN ONE */
 .apps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:36px}
-@media(min-width:760px){.apps{grid-template-columns:repeat(4,1fr);gap:16px}}
+@media(min-width:760px){.apps{grid-template-columns:repeat(3,1fr);gap:16px}}
 .app{border-radius:20px;padding:18px;background:var(--panel);border:1px solid var(--border);position:relative;overflow:hidden;min-height:150px;padding-top:74px;display:flex;flex-direction:column;justify-content:flex-end}.app::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--c)}
 .app .ic{position:absolute;top:16px;left:16px;width:44px;height:44px;border-radius:13px;background:var(--t);color:var(--c);display:flex;align-items:center;justify-content:center}.app .ic svg{width:24px;height:24px}
 .app b{font-size:18px;line-height:1.15}
@@ -109,6 +110,7 @@ svg.f{fill:currentColor;stroke:none}
 
 /* Split */
 .split{display:grid;gap:40px;align-items:center}
+.split>div{min-width:0}
 @media(min-width:900px){.split{grid-template-columns:1fr 1.1fr;gap:64px}}
 .split h2{font-size:clamp(30px,5vw,50px);line-height:1.08;margin-top:10px}
 .ticks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
@@ -117,12 +119,23 @@ svg.f{fill:currentColor;stroke:none}
 .duo{display:flex;gap:18px;justify-content:center;align-items:flex-start}
 .duo .phone{width:min(44vw,280px)}
 .duo .phone:nth-child(2){margin-top:46px}
+.voice-phones{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 6px 14px;margin:0 -6px}
+.voice-phones::-webkit-scrollbar{display:none}
+.voice-phones>div{flex:0 0 min(44vw,230px);min-width:0;scroll-snap-align:start}
+.voice-phones .phone{width:100%}
 .cap{display:block;text-align:center;font-size:13px;color:var(--muted);margin-top:10px}
 .hold-hint{display:flex;justify-content:center;gap:8px;margin-top:16px;font-size:14px;color:var(--muted)}
 .hold-hint b{color:var(--accent-l)}
 
-/* Step rails: wide screens centre the row */
-@media(min-width:1220px){.steps{padding-left:calc(50% - 570px);padding-right:calc(50% - 570px)}}
+/* Carousel of real screens */
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:32px 20px 12px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+@media(min-width:1220px){.rail,.steps{padding-left:calc(50% - 570px);padding-right:calc(50% - 570px)}}
+.rail{scroll-behavior:smooth}
+.rcard{flex:0 0 min(70vw,250px);scroll-snap-align:center}
+.rcard .phone{width:100%}
+.rcard b{display:block;margin-top:14px;font-size:17px}
+.rcard span{color:var(--muted);font-size:14px}
 
 /* MAC */
 .mac-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0 22px}
@@ -142,9 +155,12 @@ svg.f{fill:currentColor;stroke:none}
 .mac-tabs::-webkit-scrollbar{display:none}
 .mac-tabs button{flex:none}
 @media(min-width:900px){.mac-tabs{justify-content:center;flex-wrap:wrap}}
-.dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
-.dots button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:#2F4A40;cursor:pointer;transition:all .3s}
-.dots button.on{width:26px;background:#FF7A4D}
+/* Each dot is a 24px tap target; the visible dot is drawn inside it */
+.dots{display:flex;justify-content:center;gap:0;margin-top:8px}
+.dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;position:relative;transition:width .3s}
+.dots button::before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:99px;background:#2F4A40;transition:all .3s}
+.dots button.on{width:42px}
+.dots button.on::before{width:26px;background:#FF7A4D}
 .dots.hide{display:none}
 .mac-view figcaption{text-align:center;color:var(--muted);font-size:15px;margin:18px auto 0;max-width:720px;min-height:3em}.mac-view figcaption b{color:var(--text)}
 .mac-duo{display:grid;gap:16px;align-items:start}
@@ -173,9 +189,9 @@ svg.f{fill:currentColor;stroke:none}
 
 /* STORY / FAQ / CLOSE */
 .story{background:#FBF3E7;color:#1E2B25}
-.story .eyebrow{color:#AD4430}
+.story .eyebrow{color:#C8553D}
 .story h2{font-size:clamp(32px,6vw,56px);line-height:1.05;margin-top:12px}
-.story h2 em{color:#AD4430;font-weight:600}
+.story h2 em{color:#C8553D;font-weight:600}
 .beats{display:grid;gap:26px;margin-top:40px;text-align:left}
 @media(min-width:760px){.beats{grid-template-columns:repeat(3,1fr)}}
 .beats .n{font-family:'Fraunces',serif;font-size:52px;font-weight:700;line-height:1}
@@ -204,7 +220,7 @@ svg.f{fill:currentColor;stroke:none}
 .who p{color:#4A5852;margin:10px 0 0}
 .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .facts span{background:#F3EADC;border-radius:999px;padding:7px 14px;font-size:14px;color:#3A4842}
-.facts b{color:#AD4430}
+.facts b{color:#C8553D}
 .mv{background:#FBF3E7;padding-top:0}
 .mv-grid{display:grid;gap:16px}
 @media(min-width:760px){.mv-grid{grid-template-columns:1fr 1fr}}
@@ -397,3 +413,4 @@ html{overflow-x:hidden}
 .close .btn{background:var(--bg);color:#fff}
 .who-tile{color:#0F1A16}
 .who-tile svg{color:inherit}
+.wordmark i{color:var(--script)}

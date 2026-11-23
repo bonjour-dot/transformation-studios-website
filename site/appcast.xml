@@ -1,0 +1,78 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Transformation Studios</title>
+        <item>
+            <title>1.2.10</title>
+            <pubDate>Mon, 23 Nov 2026 10:55:19 +0100</pubDate>
+            <sparkle:version>20261123.1</sparkle:version>
+            <sparkle:shortVersionString>1.2.10</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<html><body>
+<p><b>Teleprompter: the Delivery level is yellow</b></p>
+<ul>
+<li>On the Delivery level, the pause and section chips, the section bar, the line beside the reading band and the voice-follow pill are now the Teleprompter yellow instead of blue, the same as on the iPhone. Time stays green and Smart stays purple.</li>
+<li>Nothing else changes in how the teleprompter works.</li>
+</ul>
+<p><b>Also new since 1.2.7</b></p>
+<p><b>A small fix to the Collage door</b></p>
+<ul>
+<li>On Images, if you clicked <b>Collage</b>, cancelled, and then clicked <b>Photo</b>, the new Photo still came with the three-photo layout. Photo now always starts with one photo.</li>
+<li>Behind the scenes, every door on the library pages (Record, Import, With script, Photo, Collage, New, Paste) is now checked automatically each time the app is tested.</li>
+</ul>
+<p><b>Home&#x27;s library pages now match the iPhone</b></p>
+<ul>
+<li><b>Video, Images, Audio, Scripts and Slides</b> each open with a big banner in that page&#x27;s own colour (orange, blue, pink, yellow, green), with its name and how many you have. Search, your plan and the account button stay on the row above it.</li>
+<li>Under the banner are two or three <b>doors</b>, the quickest ways to start: Video has Record, Import and With script; Images has Photo and Collage; Audio has Record and Import; Scripts has New, Paste and Import; Slides has New and Import. An Import door asks for the file first, so cancelling makes nothing.</li>
+<li>A <b>Recent</b> row shows your three newest on each page (it hides when you have three or fewer). Folders and the full list follow, as before.</li>
+<li>Cards, tiles, the orange buttons and the selected sidebar row have a thin, flat, darker bottom edge, like the iPhone&#x27;s. Nothing moved or changed size.</li>
+</ul>
+<p><b>Scripts</b></p>
+<ul>
+<li>Every script tile shows how long it takes to read, in a small yellow pill (for example 2:10), worked out from that script&#x27;s own speed and text size. On the Scripts page the line under the name shows its words and speed.</li>
+<li><b>Paste</b> (at the top of Scripts, and as a door) makes a new script from the text you copied, named after its first line, and opens it on the Prompter tab. With nothing copied it says &quot;Nothing to paste yet&quot;.</li>
+</ul>
+<p><b>Audio</b></p>
+<ul>
+<li>Audio tiles have a round pink <b>play</b> button: listen without opening the project. Starting another one stops the first; leaving the page or opening a project stops it too.</li>
+</ul>
+<p><b>Photo</b></p>
+<ul>
+<li>A new Photo opens on <b>Layout</b>: choose a layout, then drop photos into its spaces. Empty spaces show a blue dashed outline with a plus; click one to choose photos. Photos you already made open as before.</li>
+<li>The Images page&#x27;s <b>Collage</b> door starts a Photo with a three-photo layout already picked.</li>
+</ul>
+<p><b>Smart Cut</b></p>
+<ul>
+<li>AI Tools › Smart Cut has three quick choices above the slider: <b>Tight</b>, <b>Natural</b> and <b>Relaxed</b> (the same three as the iPhone). The slider is still there to fine-tune; move it anywhere else and no choice is lit.</li>
+</ul>
+<p><b>Languages</b></p>
+<ul>
+<li>Counts read correctly in every language (&quot;1 project&quot;, &quot;2 projects&quot;, and the right forms in French, Spanish and German), and messages that used to be stitched together from pieces are now whole sentences that translate properly.</li>
+</ul>
+</body></html>
+]]></description>
+            <enclosure url="https://transformationstudio.site/downloads/Transformation-Studios-1.2.10.dmg" length="15445709" type="application/octet-stream" sparkle:edSignature="Gv7d+rZ0CNxECjHhs43531LOdkxlfOhD4YnVnEcStccKyGKrRb0b8pMrtJcHaiPUle+Q54FXUfhOsGzQYY1tAA=="/>
+            <sparkle:deltas>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261123.1-20261122.1.delta" sparkle:deltaFrom="20261122.1" length="331614" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="8wK657aw85JG7s4tGtR6tB4rEu/drIgY7e9daQzCHBfe2+L0FEzZm2knPdpir2IWfLI8RmAPBkPWj3XMn6ptAg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>1.2.9</title>
+            <pubDate>Sun, 22 Nov 2026 20:26:33 +0100</pubDate>
+            <sparkle:version>20261122.1</sparkle:version>
+            <sparkle:shortVersionString>1.2.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<html><body>
+<p><b>A small fix to the Collage door</b></p>
+<ul>
+<li>On Images, if you clicked <b>Collage</b>, cancelled, and then clicked <b>Photo</b>, the new Photo still came with the three-photo layout. Photo now always starts with one photo.</li>
+<li>Behind the scenes, every door on the library pages (Record, Import, With script, Photo, Collage, New, Paste) is now checked automatically each time the app is tested.</li>
+</ul>
+</body></html>
+]]></description>
+            <enclosure url="https://transformationstudio.site/downloads/Transformation-Studios-1.2.9.dmg" length="15432347" type="application/octet-stream" sparkle:edSignature="yIKF5eHsBUUdrev9+XEIdfaEYohDKJ8HqfEm0SCFm8l6/quY/YqU3/owyBsMWX47T+RCnwHT/3o37UHKR+1pBg=="/>
+        </item>
+    </channel>
+</rss>
