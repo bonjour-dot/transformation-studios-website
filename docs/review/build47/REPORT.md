@@ -3,7 +3,7 @@
 **Summary**
 1. transformationstudio.site now shows build 47 (version 1.0): every iPhone and iPad screen is a real build 47 screenshot with demo content, the Mac screens are current Mac app screens, and the six tools sit in their app colours.
 2. One subscription ($9.99 a month or $99.99 a year, 7 days free), the Founding 100 band with three ways to join, and the launch-list form are live. The words "watermark" and "4K" are gone from the whole repo and the live page.
-3. **One thing is not working yet and only you can fix it:** the launch-list form's server side. Netlify Forms is not switched on for this site (see the checklist), so a submit shows "Join by email instead" with a prefilled email to admin@transformationstudio.site. Nothing is lost, but the list will not fill until you switch it on.
+3. **Update:** Netlify Forms is now on and the launch-list form works live (test submit from the page showed "You're on the list" and Netlify logged a submission at 2:19 PM). An email notification to admin@transformationstudio.site was added; Netlify is waiting for that address to confirm it.
 
 Live: https://transformationstudio.site · commit on `main`: see the last line of this file's git log (merge `835b246`, then `da58db8` and a wording fix on top).
 
@@ -56,7 +56,7 @@ Live: https://transformationstudio.site · commit on `main`: see the last line o
 
 - 390, 768 and 1440 px: no sideways scroll, zero console errors, every image has alt text. Screenshots of every section are in `docs/review/build47/live/` (390 and 1440) and `docs/review/build47/local/` (all three widths).
 - Hero shows the build 47 screens; the Founding 100 band shows "Founding places open 8 December" while `foundingCount` is 0.
-- All 7 join buttons open the launch-list form. A test submit (admin+test@transformationstudio.site) did **not** reach Netlify: the server answered 404 because Netlify has no form registered for this site. `get-forms-for-project` returns an empty list. I did not change Netlify settings, as you asked.
+- All 7 join buttons open the launch-list form. The first test submit got a 404 because Netlify Forms was off. After Ryan switched on form detection I redeployed from the Netlify dashboard, and a second test submit (admin+test@transformationstudio.site) succeeded and was logged by Netlify.
 - With `appStoreUrl` set (tested by swapping the file in the browser): every button goes to `…?ct=website&mt=8`, the form is removed and the badge shows. With `foundingCount` 7: 7 of 100 dots lit.
 - Share the link: copies the link and says "Link copied" (no Web Share API in headless Chromium).
 - `/privacy`, `/terms`, `/support`: 200. `/legal`: 404.
@@ -65,7 +65,7 @@ Live: https://transformationstudio.site · commit on `main`: see the last line o
 
 ## Things only Ryan can do
 
-- [ ] **In Netlify: switch on Forms for this site** (Project configuration, Forms, enable form detection), then redeploy. Then Forms, `launch-list`, add an email notification to admin@transformationstudio.site. Until then the form falls back to "Join by email instead".
+- [ ] **Confirm the notification email:** Netlify shows "Waiting for admin@transformationstudio.site to confirm". Open the confirmation email it sent to that inbox and click the link. (Forms and the `launch-list` form are already on.) Delete the two test submissions (admin+test@ and probe+test@) in Netlify, Forms.
 - [ ] When Apple approves the app: paste the App Store link into `appStoreUrl` in `site/assets/js/site.js` and push (one line, see README.md).
 - [ ] Each week: update `SITE.foundingCount` (0 to 100).
 - [ ] Run the legal pages job: `/legal` is missing and the privacy, terms and support pages still say "Transformation Studios" and "TO CONFIRM".
