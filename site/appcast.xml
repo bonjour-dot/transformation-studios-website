@@ -3,19 +3,24 @@
     <channel>
         <title>Transformation Studios</title>
         <item>
-            <title>1.2.9</title>
-            <pubDate>Sun, 22 Nov 2026 20:26:33 +0100</pubDate>
-            <sparkle:version>20261122.1</sparkle:version>
-            <sparkle:shortVersionString>1.2.9</sparkle:shortVersionString>
+            <title>1.2.10</title>
+            <pubDate>Mon, 23 Nov 2026 10:55:19 +0100</pubDate>
+            <sparkle:version>20261123.1</sparkle:version>
+            <sparkle:shortVersionString>1.2.10</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <description><![CDATA[<html><body>
+<p><b>Teleprompter: the Delivery level is yellow</b></p>
+<ul>
+<li>On the Delivery level, the pause and section chips, the section bar, the line beside the reading band and the voice-follow pill are now the Teleprompter yellow instead of blue, the same as on the iPhone. Time stays green and Smart stays purple.</li>
+<li>Nothing else changes in how the teleprompter works.</li>
+</ul>
+<p><b>Also new since 1.2.7</b></p>
 <p><b>A small fix to the Collage door</b></p>
 <ul>
 <li>On Images, if you clicked <b>Collage</b>, cancelled, and then clicked <b>Photo</b>, the new Photo still came with the three-photo layout. Photo now always starts with one photo.</li>
 <li>Behind the scenes, every door on the library pages (Record, Import, With script, Photo, Collage, New, Paste) is now checked automatically each time the app is tested.</li>
 </ul>
-<p><b>Also new since 1.2.7</b></p>
 <p><b>Home&#x27;s library pages now match the iPhone</b></p>
 <ul>
 <li><b>Video, Images, Audio, Scripts and Slides</b> each open with a big banner in that page&#x27;s own colour (orange, blue, pink, yellow, green), with its name and how many you have. Search, your plan and the account button stay on the row above it.</li>
@@ -44,6 +49,26 @@
 <p><b>Languages</b></p>
 <ul>
 <li>Counts read correctly in every language (&quot;1 project&quot;, &quot;2 projects&quot;, and the right forms in French, Spanish and German), and messages that used to be stitched together from pieces are now whole sentences that translate properly.</li>
+</ul>
+</body></html>
+]]></description>
+            <enclosure url="https://transformationstudio.site/downloads/Transformation-Studios-1.2.10.dmg" length="15445709" type="application/octet-stream" sparkle:edSignature="Gv7d+rZ0CNxECjHhs43531LOdkxlfOhD4YnVnEcStccKyGKrRb0b8pMrtJcHaiPUle+Q54FXUfhOsGzQYY1tAA=="/>
+            <sparkle:deltas>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261123.1-20261122.1.delta" sparkle:deltaFrom="20261122.1" length="331614" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="8wK657aw85JG7s4tGtR6tB4rEu/drIgY7e9daQzCHBfe2+L0FEzZm2knPdpir2IWfLI8RmAPBkPWj3XMn6ptAg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>1.2.9</title>
+            <pubDate>Sun, 22 Nov 2026 20:26:33 +0100</pubDate>
+            <sparkle:version>20261122.1</sparkle:version>
+            <sparkle:shortVersionString>1.2.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<html><body>
+<p><b>A small fix to the Collage door</b></p>
+<ul>
+<li>On Images, if you clicked <b>Collage</b>, cancelled, and then clicked <b>Photo</b>, the new Photo still came with the three-photo layout. Photo now always starts with one photo.</li>
+<li>Behind the scenes, every door on the library pages (Record, Import, With script, Photo, Collage, New, Paste) is now checked automatically each time the app is tested.</li>
 </ul>
 </body></html>
 ]]></description>
