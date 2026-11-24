@@ -93,7 +93,7 @@ def doc(eyebrow, h1, lead, inner):
 </section>'''
 
 
-FAQ = '''<details><summary>Does one subscription cover iPhone, iPad and Mac?</summary><p>Yes. Subscribe once with your Apple Account and use them all.</p></details>
+FAQ = '''<details><summary>Does one subscription cover iPhone, iPad and Mac?</summary><p>Yes. Subscribe once and sign in with the same account on each device.</p></details>
     <details><summary>Do I need editing experience?</summary><p>No. It was built for one person and a phone. Smart Cut and auto captions do the slow parts.</p></details>
     <details><summary>Which platforms can I post to?</summary><p>Anything your phone shares to: Instagram, TikTok, YouTube, WhatsApp and more, in 9:16, 16:9, 1:1 or 4:5.</p></details>
     <details><summary>Is my content private?</summary><p>Speech-to-text and captions run on your device.</p></details>
