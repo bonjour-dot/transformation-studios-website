@@ -3,6 +3,33 @@
     <channel>
         <title>Transformation Studios</title>
         <item>
+            <title>1.2.17</title>
+            <pubDate>Tue, 24 Nov 2026 13:52:34 +0100</pubDate>
+            <sparkle:version>20261124.2</sparkle:version>
+            <sparkle:shortVersionString>1.2.17</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<html><body>
+<p><b>Getting ready for the App Store</b></p>
+<ul>
+<li>The AI tab is now called <b>Smart</b>, with <b>Smart tools</b> and <b>Talk notes</b>. Everything still runs on your Mac, exactly as before.</li>
+<li>Behind the scenes: the app you download no longer carries the built-in tests, the screenshot switches or unfinished features. They are only in the developer copy.</li>
+<li>The sign-in window shows the same &quot;Transformation Studio&quot; title as Home, with &quot;Studio&quot; in gold.</li>
+<li>The subscribe screens no longer mention a watermark (there never was one), and show one price in US dollars until the App Store gives the price for your country.</li>
+<li>Mac App Store version: it now belongs to the same App Store entry as the iPhone app, so one subscription bought on iPhone, iPad or Mac counts everywhere. The free week is offered the same way.</li>
+<li>Small things: slightly clearer faint text on dark cards, and a gold icon tile that stands out a little more on white rows in light mode.</li>
+</ul>
+</body></html>
+]]></description>
+            <enclosure url="https://transformationstudio.site/downloads/Transformation-Studios-1.2.17.dmg" length="13904916" type="application/octet-stream" sparkle:edSignature="4Uv7elN4badLHqhaZdmtMZeiN5xhdwQyU/A/3nelnKu7i/wyc5jZ729/Ugesn9V5HxuAPQJc31S7k6RirGmpDg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261124.2-20261123.3.delta" sparkle:deltaFrom="20261123.3" length="1566554" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Tr+139JQAWQgSis96lrIhRqB6n5i3qaFRlBZm4jl9nV4E9nWVX6BvuTnFX0+Yzj0ZsSFN4Hiqbf7L6ycpOX8Cg=="/>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261124.2-20261123.2.delta" sparkle:deltaFrom="20261123.2" length="1562630" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="MIdq1BIxwsEco/5N7AVLO9VvLjoq0aXvYX3BYmHzqtqd98Mee//SzXAOI4NjtYMWUkU3s4b+8UMkg35XESOYAw=="/>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261124.2-20261123.1.delta" sparkle:deltaFrom="20261123.1" length="1591862" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="9zkxvmnsE8H+3uq6chJPyWGk8oC9OmRWxkHc9/DXuGZhXFX7eFi2TNVr/ZQ4/mY2ntLeZOE/kkes+j6xSRkdDw=="/>
+                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261124.2-20261122.1.delta" sparkle:deltaFrom="20261122.1" length="1596794" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="aDlk9w9yEv6qA5TjHK9chj6zcTtHb75v2GGAEn5VYaSBGsodKmPpEjgV+VS6+RncIn2R3hMQnHFUZGACCnhdCw=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.2.12</title>
             <pubDate>Mon, 23 Nov 2026 16:58:29 +0100</pubDate>
             <sparkle:version>20261123.3</sparkle:version>
@@ -42,18 +69,16 @@
                 <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261123.2-20261123.1.delta" sparkle:deltaFrom="20261123.1" length="1058390" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="4NlXu7oihwRKAB0KT5Qj/0uroipWq7Gdbiox6U7wylOtr1BP0p81fL4WumdbtBkWPcRKO6hoZUsaljsb5s+UDw=="/>
                 <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261123.2-20261122.1.delta" sparkle:deltaFrom="20261122.1" length="1064874" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="PV5F1E18Yl9nyHdw1as4YlBbx2ano8s3a1nWqLL3DUaViqAl5lK5CMvdycE3YM5vWl0zz9nqbpSRs335+XHBCQ=="/>
             </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.2.10</title>
-            <pubDate>Mon, 23 Nov 2026 10:55:19 +0100</pubDate>
-            <sparkle:version>20261123.1</sparkle:version>
-            <sparkle:shortVersionString>1.2.10</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://transformationstudio.site/downloads/Transformation-Studios-1.2.10.dmg" length="15445709" type="application/octet-stream" sparkle:edSignature="Gv7d+rZ0CNxECjHhs43531LOdkxlfOhD4YnVnEcStccKyGKrRb0b8pMrtJcHaiPUle+Q54FXUfhOsGzQYY1tAA=="/>
-            <sparkle:deltas>
-                <enclosure url="https://transformationstudio.site/downloads/Transformation%20Studios20261123.1-20261122.1.delta" sparkle:deltaFrom="20261122.1" length="331614" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="976432" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="8wK657aw85JG7s4tGtR6tB4rEu/drIgY7e9daQzCHBfe2+L0FEzZm2knPdpir2IWfLI8RmAPBkPWj3XMn6ptAg=="/>
-            </sparkle:deltas>
+            <description><![CDATA[<html><body>
+<p><b>Testers sign in and go straight in</b></p>
+<ul>
+<li>In the tester copy of the app, signing in with Apple, Google or email opens the app. No subscribe screen, no purchase. Signed out, you still see the sign-in screen.</li>
+<li>Email accounts that still need confirming now show <b>Check your inbox</b>, with <b>I&#x27;ve confirmed, continue</b> and <b>Send the link again</b>.</li>
+<li>If your plan can&#x27;t be checked (no internet, or the server isn&#x27;t answering), the app no longer locks you out with the subscribe screen. It keeps your last known plan, or shows <b>Couldn&#x27;t check your plan</b> with <b>Try Again</b> and <b>Sign Out</b>.</li>
+<li>While the plan is being checked you see &quot;Checking your plan…&quot; instead of the subscribe screen flashing up.</li>
+</ul>
+</body></html>
+]]></description>
         </item>
     </channel>
 </rss>
