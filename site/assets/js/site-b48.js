@@ -49,11 +49,6 @@ const SITE = {
   var vbox=document.querySelector(".video"),vurl=SITE.storyVideoUrl||"",vm,vsrc="";
   if((vm=vurl.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/)))vsrc="https://www.youtube-nocookie.com/embed/"+vm[1]+"?autoplay=1&rel=0";
   else if((vm=vurl.match(/vimeo\.com\/(?:video\/)?(\d+)/)))vsrc="https://player.vimeo.com/video/"+vm[1]+"?autoplay=1&dnt=1";
-  // The personal video and partnership sections belong to transformationmission.site only (localhost for previews).
-  var hn=location.hostname,local=/^(localhost|127\.0\.0\.1)$/.test(hn),onMission=local||/(^|\.)transformationmission\.site$/.test(hn);
-  var msec=document.getElementById("mission-video"),psec=document.getElementById("partner");
-  if(msec&&onMission&&(vsrc||local))msec.hidden=false;
-  if(psec&&onMission)psec.hidden=false;
   if(vbox&&vsrc){var lab=vbox.querySelector("small");if(lab)lab.textContent="RYAN'S STORY \u00b7 PLAY VIDEO";vbox.classList.add("ready");vbox.setAttribute("role","button");vbox.tabIndex=0;vbox.setAttribute("aria-label","Play Ryan's story");
     var playv=function(){if(vbox.querySelector("iframe"))return;var f=document.createElement("iframe");f.src=vsrc;f.title="Ryan's story";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";vbox.textContent="";vbox.appendChild(f);vbox.classList.add("playing");vbox.removeAttribute("role");vbox.removeAttribute("tabindex")};
     vbox.addEventListener("click",playv);vbox.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();playv()}})}
