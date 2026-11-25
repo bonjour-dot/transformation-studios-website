@@ -1038,3 +1038,11 @@ html{overflow-x:hidden}
 .b4modes span{font-weight:700;font-size:3.4cqw;padding:1.8cqw 4cqw;border-radius:99px;background:#5CC8FF;color:#06223F}
 .b4shoot.m-video .b4modes span{background:#FF8A5C;color:#2A1008}
 .b4shoot.m-video .zone{inset:0 0 30cqw}
+
+/* Personal partnership: small and quiet, above the footer */
+.partner{padding:8px 0 56px;text-align:center}
+.partner .wrap{max-width:620px}
+.partner h3{font-size:22px}
+.partner p{color:var(--muted);font-size:15px;line-height:1.55;margin:10px 0 20px}
+.partner .btn{min-height:44px;font-size:15px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
