@@ -1038,3 +1038,7 @@ html{overflow-x:hidden}
 .b4modes span{font-weight:700;font-size:3.4cqw;padding:1.8cqw 4cqw;border-radius:99px;background:#5CC8FF;color:#06223F}
 .b4shoot.m-video .b4modes span{background:#FF8A5C;color:#2A1008}
 .b4shoot.m-video .zone{inset:0 0 30cqw}
+/* Write with AI (coming soon), under the teleprompter steps */
+.ai-soon{text-align:center;margin-top:56px}
+.ai-soon .lead{max-width:620px;margin:12px auto 0}
+.ai-soon .grid4{margin-top:28px;text-align:left}
