@@ -1,0 +1,98 @@
+// Site settings: change these in one place.
+const SITE = {
+  appStoreUrl: "#",        // iPhone and iPad App Store link
+  macAppStoreUrl: "#",     // Mac App Store link
+  supportEmail: "admin@transformationsolutions.site"
+};
+
+(function(){
+  var rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // App Store buttons and badges: use the real links once they are set; until then buttons scroll to Pricing and badges stay hidden
+  function live(u){return !!u&&u!=="#"}
+  document.querySelectorAll("[data-store]").forEach(function(a){var u=a.getAttribute("data-store")==="mac"?SITE.macAppStoreUrl:SITE.appStoreUrl;if(live(u)){a.href=u;a.rel="noopener";a.hidden=false}});
+  document.querySelectorAll("[data-support]").forEach(function(a){a.href="mailto:"+SITE.supportEmail;if(a.hasAttribute("data-fill"))a.textContent=SITE.supportEmail});
+  // waveform bars
+  var w=document.getElementById("wave");
+  if(w){var s=7,h="";for(var i=0;i<44;i++){s=(s*9301+49297)%233280;var v=30+Math.round(s/233280*62);h+='<i style="height:'+v+'%"></i>'}w.insertAdjacentHTML("afterbegin",h)}
+  // trim digits: start value ticks forward, like typing an exact time
+  var ts=document.getElementById("tr-s"),cur=document.getElementById("ev-cur"),k=0;
+  if(ts&&!rm)setInterval(function(){k=(k+1)%40;var t=k*0.3;ts.textContent="0:"+(t<10?"0":"")+t.toFixed(1);var c=Math.floor(k*5.6);cur.textContent=Math.floor(c/60)+":"+String(c%60).padStart(2,"0")},700);
+  // captions word highlight
+  var cw=document.querySelectorAll("#capw span"),ci=0;
+  if(cw.length){cw[0].classList.add("on");if(!rm)setInterval(function(){cw[ci].classList.remove("on");ci=(ci+1)%cw.length;cw[ci].classList.add("on")},480)}
+  // teleprompter demo record
+  var tp=document.getElementById("tp"),rb=document.getElementById("recb"),tm,t=0;
+  function tick(){t++;var r=180-t;document.getElementById("tp-t").textContent=Math.floor(t/60)+":"+String(t%60).padStart(2,"0");document.getElementById("tp-left").textContent=Math.floor(r/60)+":"+String(r%60).padStart(2,"0");document.getElementById("tp-prog").style.width=(t/180*100)+"%";if(t>=180)t=0}
+  if(rb)rb.addEventListener("click",function(){if(tp.classList.toggle("recording")){t=0;tick();tm=setInterval(tick,1000)}else clearInterval(tm)});
+  // transcript hold
+  var box=document.getElementById("trx");
+  if(box){var ps=box.querySelectorAll(".para"),pop=document.getElementById("pop");
+    function on(el){ps.forEach(function(x){x.classList.toggle("on",x===el)});box.classList.add("holding");var b=box.getBoundingClientRect(),r=el.getBoundingClientRect(),sc=box.offsetWidth/b.width||1,y=(r.top-b.top)*sc,top=y-pop.offsetHeight-8;if(top<box.offsetHeight*0.1)top=y+r.height*sc+8;pop.style.top=top+"px"}
+    ps.forEach(function(el){var tmr;el.addEventListener("click",function(){on(el)});el.addEventListener("pointerdown",function(){tmr=setTimeout(function(){on(el)},350)});["pointerup","pointerleave"].forEach(function(e){el.addEventListener(e,function(){clearTimeout(tmr)})})});
+    window.addEventListener("load",function(){on(ps[1])});window.addEventListener("resize",function(){var c=box.querySelector(".para.on");if(c)on(c)})}
+  // share sheet: pick a version, the big button follows; tap it to copy
+  var shw=document.getElementById("shw");
+  if(shw){var chips=shw.querySelectorAll(".shchip"),sb=document.getElementById("shbtn"),st=document.getElementById("shbtn-t"),lab="Copy all",ft;
+    chips.forEach(function(c){c.addEventListener("click",function(){chips.forEach(function(x){x.classList.toggle("on",x===c)});lab=c.getAttribute("data-copy");st.textContent=lab})});
+    sb.addEventListener("click",function(){st.textContent="Copied";clearTimeout(ft);ft=setTimeout(function(){st.textContent=lab},1500)})}
+  // Auto carousels: keep moving on their own, pause briefly while the visitor touches, hovers or scrolls them, then carry on
+  function cards(r){return [].slice.call(r.children).filter(function(c){return c.offsetWidth>0})}
+  function curIdx(r){var cs=cards(r),x=r.scrollLeft+r.clientWidth/2,best=0,d=1e9;cs.forEach(function(c,i){var m=c.offsetLeft+c.offsetWidth/2-r.offsetLeft,dd=Math.abs(m-x);if(dd<d){d=dd;best=i}});return best}
+  // Glide: an eased, frame-by-frame scroll (native smooth scrolling is abrupt and fights scroll-snap). Snap is switched off while it glides.
+  function glide(r,to){to=Math.max(0,Math.min(r.scrollWidth-r.clientWidth,to));if(rm){r.scrollLeft=to;return}
+    var from=r.scrollLeft,d=to-from;if(Math.abs(d)<2)return;var t0=performance.now(),dur=Math.min(1500,Math.max(850,Math.abs(d)*1.1));
+    r._glide=t0;r.style.scrollSnapType="none";r.style.scrollBehavior="auto";
+    function f(now){if(r._glide!==t0)return;var p=Math.min(1,(now-t0)/dur),e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;r.scrollLeft=from+d*e;
+      if(p<1)requestAnimationFrame(f);else{r.style.scrollSnapType="";r.style.scrollBehavior=""}}
+    requestAnimationFrame(f)}
+  function stopGlide(r){if(r._glide){r._glide=0;r.style.scrollSnapType="";r.style.scrollBehavior=""}}
+  function go(r,i){var cs=cards(r);if(!cs.length)return;i=(i+cs.length)%cs.length;var c=cs[i];glide(r,c.offsetLeft-r.offsetLeft-(r.clientWidth-c.offsetWidth)/2)}
+  var tabs=document.querySelectorAll(".mac-tabs button"),mac=document.getElementById("mactrack");
+  document.querySelectorAll(".auto").forEach(function(r){
+    var dots=document.querySelector('.dots[data-for="'+r.id+'"]'),hold=0,vis=false,n=cards(r).length;
+    if(dots){for(var i=0;i<n;i++){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Show item "+(i+1));(function(k){b.onclick=function(){hold=Date.now()+8000;go(r,k)}})(i);dots.appendChild(b)}}
+    function sync(){var c=curIdx(r);if(dots){dots.classList.toggle("hide",r.scrollWidth<=r.clientWidth+4);[].forEach.call(dots.children,function(d,i){d.classList.toggle("on",i===c)})}
+    }
+    var st;r.addEventListener("scroll",function(){clearTimeout(st);st=setTimeout(sync,80)},{passive:true});
+    ["pointerdown","touchstart","touchmove","wheel","focusin"].forEach(function(e){r.addEventListener(e,function(){stopGlide(r);hold=Date.now()+5000},{passive:true})});
+    r.addEventListener("mouseenter",function(){hold=Date.now()+5000});r.addEventListener("mouseleave",function(){hold=Math.min(hold,Date.now()+1200)});
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting},{threshold:.35}).observe(r);
+    window.addEventListener("resize",sync);sync();
+    if(!rm)setInterval(function(){if(!vis||Date.now()<hold||document.hidden)return;var max=r.scrollWidth-r.clientWidth;if(max<=4)return;
+      // at the end, go back to the start; otherwise go to the next card that actually moves the row (the last cards can't be centred on wide screens)
+      if(r.scrollLeft>=max-4){go(r,0);return}
+      var cs=cards(r),i=curIdx(r)+1;while(i<cs.length&&Math.min(max,cs[i].offsetLeft-r.offsetLeft-(r.clientWidth-cs[i].offsetWidth)/2)<=r.scrollLeft+4)i++;
+      go(r,i>=cs.length?0:i)},3600);
+  });
+  // Mac carousel: the screens sit on a ring that keeps turning the same way. Tabs, dots, arrow keys, a swipe or a click on a side screen turn it; it pauses briefly while touched or hovered.
+  if(mac){(function(){
+    var sl=[].slice.call(mac.children),n=sl.length,turn=0,hold=0,vis=false,step=360/n,dots=document.querySelector('.dots[data-for="mactrack"]'),view=mac.parentNode;
+    function cur(){return((turn%n)+n)%n}
+    function size(){var w=sl[0].offsetWidth;if(w)mac.style.setProperty("--r",Math.round(w/2/Math.tan(Math.PI/n))+"px")}
+    function draw(){var c=cur();sl.forEach(function(s,i){var d=((i-c)%n+n)%n;if(d>n/2)d-=n;
+        s.style.transform="translateZ(calc(var(--r) * -1)) rotateY("+((i-turn)*step)+"deg) translateZ(var(--r))";
+        s.classList.toggle("cur",d===0);s.classList.toggle("near",d===1||d===-1);s.setAttribute("aria-hidden",d===0?"false":"true")});
+      if(dots)[].forEach.call(dots.children,function(b,i){b.classList.toggle("on",i===c)});
+      tabs.forEach(function(t,i){t.setAttribute("aria-selected",i===c?"true":"false");var p=t.parentNode;if(i===c&&p.scrollWidth>p.clientWidth)p.scrollTo({left:t.offsetLeft-p.clientWidth/2+t.offsetWidth/2,behavior:rm?"auto":"smooth"})})}
+    function by(d){turn+=d;draw()}
+    function to(i){var d=((i-cur())%n+n)%n;if(d>n/2)d-=n;by(d)}
+    // once the carousel is on screen, load every screen so none turns up empty
+    function eager(){if(eager.done)return;eager.done=true;mac.querySelectorAll("img").forEach(function(m){m.loading="eager"})}
+    function wait(ms){hold=Math.max(hold,Date.now()+ms)}
+    if(dots)sl.forEach(function(s,i){var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Show screen "+(i+1));b.onclick=function(){wait(8000);to(i)};dots.appendChild(b)});
+    tabs.forEach(function(t,i){t.addEventListener("click",function(){wait(8000);to(i)})});
+    // swipe or drag sideways to turn; a click on a side screen brings it to the front
+    var x0=null,y0=0,moved=false;
+    mac.addEventListener("pointerdown",function(e){x0=e.clientX;y0=e.clientY;moved=false;wait(5000)});
+    mac.addEventListener("pointermove",function(e){if(x0===null)return;var dx=e.clientX-x0;if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(e.clientY-y0)){moved=true;x0=null;wait(5000);by(dx<0?1:-1)}});
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev){mac.addEventListener(ev,function(){x0=null})});
+    sl.forEach(function(s,i){s.addEventListener("click",function(){if(!moved&&s.classList.contains("near")){wait(5000);to(i)}})});
+    mac.addEventListener("dragstart",function(e){e.preventDefault()});
+    mac.addEventListener("keydown",function(e){if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();wait(8000);by(e.key==="ArrowRight"?1:-1)}});
+    view.addEventListener("mouseenter",function(){wait(5000)});view.addEventListener("mouseleave",function(){hold=Math.min(hold,Date.now()+1200)});
+    mac.addEventListener("focusin",function(){wait(5000)});
+    if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)eager()},{threshold:.3}).observe(mac);else{vis=true;eager()}
+    window.addEventListener("resize",size);window.addEventListener("load",size);size();draw();
+    if(!rm)setInterval(function(){if(vis&&!document.hidden&&Date.now()>=hold)by(1)},3200);
+  })()}
+})();
