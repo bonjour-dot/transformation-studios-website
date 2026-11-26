@@ -20,3 +20,10 @@ Marketing site for the Transformation Studios app. Everything that is published 
 - `netlify.toml` holds the publish folder, headers and redirects. Images and fonts are cached for a year, so a replaced image needs a new file name. When the story video link is set, allow its player in `frame-src` there.
 - `tools/build_pages.py` writes privacy, terms, support and 404; edit the text there and run it, don't edit those HTML files by hand.
 - Asset paths are root-absolute (`/assets/...`), so preview with a local server from `site/`, not by opening the file.
+
+## Since 25 Nov 2026
+
+- The pages match transformationsolutions.site (repo bonjour-dot/transformation-solutions-website), copied on Ryan's request; only the site's own address says transformationstudio.site.
+- Keep `site/appcast.xml`, `site/downloads/` and `site/legal/`: the Mac app checks this domain for updates, and the legal notice must stay reachable. Nothing on the page links to them.
+- Ryan (26 Nov): this site and transformationsolutions.site are the same site. Every change to one goes to the other too.
+- The mission version of the page lives in bonjour-dot/transformation-mission-website (transformationmission.site).
